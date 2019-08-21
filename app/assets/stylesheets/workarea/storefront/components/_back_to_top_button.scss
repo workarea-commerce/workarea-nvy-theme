@@ -1,0 +1,22 @@
+/*------------------------------------*\
+    #BACK-TO-TOP-BUTTON
+\*------------------------------------*/
+
+.back-to-top-button {
+    position: fixed;
+    right: $spacing-unit * 4;
+    bottom: 0;
+    z-index: index($components, back-to-top-button);
+    padding: 11px 20px;
+    transform: translateY(100%);
+
+    &:before {
+        display: block;
+        text-align: center;
+        content: '▲';
+    }
+}
+
+.back-to-top-button--visible {
+    transform: translateY(-150%);
+}

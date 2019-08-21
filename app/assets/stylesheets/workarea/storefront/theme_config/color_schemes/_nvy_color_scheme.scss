@@ -1,0 +1,196 @@
+/*------------------------------------*\
+    #NVY-COLOR-SCHEME
+\*------------------------------------*/
+/**
+ * Color Variables
+ *
+ * These variables should always be aliased as Functional Variables at
+ * the bottom of this file. Using color name variables outside of this file may
+ * cause errors when changing color scheme.
+ */
+
+$blue: #3366cc !default;
+$yellow: #fdcc5d !default;
+$red: #e52828 !default;
+$green: #19c06a !default;
+
+
+/**
+* Grey scale
+*/
+
+$white: #ffffff !default;
+$lightest-gray: #f9f9f9 !default;
+$light-gray: #dfdce3 !default;
+$gray: #9b99a8 !default;
+$dark-gray: #505062 !default;
+$black: #000000 !default;
+
+$black-alpha-15: rgba($black, 0.15) !default;
+$black-alpha-50: rgba($black, 0.50) !default;
+$white-alpha-50: rgba($white, 0.50) !default;
+$transparent: transparent !default;
+
+
+
+/**
+* Brand Color Variables
+*/
+
+$off-black: #1b1b25 !default;
+$deep-turquoise: #005555 !default;
+$light-teal: #008b8b !default;
+$gold: #d4b200 !default;
+
+// TODO: Figure out a better way to handle this. Preferred breaking BEM to doing more gross scss.erb dynamic imports
+.color-box__swatch--off-black { background: $off-black; }
+.color-box__swatch--deep-turqoise { background: $deep-turquoise; }
+.color-box__swatch--light-teal { background: $light-teal; }
+.color-box__swatch--gold { background: $gold; }
+// Greyscale
+.color-box__swatch--white { background: $white; }
+.color-box__swatch--lightest-gray { background: $lightest-gray; }
+.color-box__swatch--light-gray { background: $light-gray; }
+.color-box__swatch--gray { background: $gray; }
+.color-box__swatch--dark-gray { background: $dark-gray; }
+.color-box__swatch--black { background: $black; }
+
+
+
+/**
+ * FUNCTIONAL COLOR VARIABLES
+ */
+
+// Generic
+
+$primary-color: $light-teal !default;
+$primary-color-dark: $deep-turquoise !default;
+
+$background-color: $white !default;
+$background-color-component: $lightest-gray !default;
+
+$font-color: $black !default;
+$link-color: $primary-color !default;
+$link-color-hover: $primary-color-dark !default;
+
+$border-color: $black !default;
+$highlight-color: $gold !default;
+$overlay-shadow-color: $black-alpha-15 !default;
+
+// Buttons
+$button-color: $black !default;
+$button-background-color: $white !default;
+$button-border-color: $primary-color-dark !default;
+$button-border-color-hover: $primary-color !default;
+
+$button-filled-color: $white !default;
+$button-filled-background-color: $primary-color-dark !default;
+$button-filled-background-color-hover: $primary-color !default;
+
+$button-disabled-color: $light-gray !default;
+$button-disabled-background-color: $gray !default;
+
+// Forms
+$forms-color: $font-color !default;
+$forms-bg-color: $background-color !default;
+$forms-disabled-color: $gray !default;
+$forms-disabled-bg-color: $light-gray !default;
+$forms-placeholder-color: $gray !default;
+
+// Inputs
+$valid-color: $light-teal !default;
+$invalid-color: $red !default;
+$input-border-color: $gray !default;
+$input-background-color: $transparent !default;
+$input-disabled-color: $light-gray !default;
+$input-disabled-background-color: $white !default;
+$input-disabled-border-color: $gray !default;
+$focus-ring-color: $primary-color-dark !default;
+$input-icon-color: $gray !default;
+
+$input-radio-color: $primary-color !default;
+$input-radio-border-color: $primary-color !default;
+$input-radio-fill-color: $white !default;
+$input-radio-background-color: $primary-color !default;
+
+$input-checkbox-color: $primary-color !default;
+$input-checkbox-border-color: $primary-color !default;
+$input-checkbox-fill-color: $white !default;
+
+// Tables
+$table-totals-border-color: $light-gray !default;
+$table-totals-total-border-color: $black !default;
+
+// Page Header
+$page-header-promo-color: $white !default;
+$page-header-promo-background-color: $primary-color-dark !default;
+$page-header-icon-color: $dark-gray !default;
+
+$cart-count-color: $white !default;
+$cart-count-background-color: $primary-color !default;
+
+$utility-nav-background-color: $white !default;
+$utility-nav-heading-color: $black !default;
+
+//Page Footer
+$page-footer-color: $white !default;
+$page-footer-checkout-color: $dark-gray !default;
+$page-footer-background-color: $off-black !default;
+$page-footer-checkout-background-color: $white !default;
+$page-footer-color: $white !default;
+$page-footer-link-color: $link-color !default;
+$page-footer-link-color-hover: $white !default;
+$page-footer-heading-decoration-color: $white !default;
+$page-footer-border-color: $dark-gray !default;
+$page-footer-copyright-color: $light-gray !default;
+
+// Navigation
+$primary-navigation-background-color: $lightest-gray !default;
+$primary-navigation-link-color: $primary-color-dark !default;
+$primary-navigation-dropdown-background-color: $white !default;
+
+$mobile-navigation-background-color: $background-color-component !default;
+$mobile-navigation-link-color: $primary-navigation-link-color !default;
+$mobile-navigation-close-button-color: $black !default;
+$mobile-navigation-header-background-color: $lightest-gray !default;
+$mobile-navigation-header-border-color: $light-gray !default;
+
+// UI Dialog
+$dialog-header-bacground-color: $white !default;
+$dialog-overlay-color: $black-alpha-50 !default;
+
+// Product
+$product-name-color: $black !default;
+$product-id-color: $gray !default;
+$product-swatch-selected-outline-color: $black !default;
+$product-list-item-border-color: $light-gray !default;
+$product-recommendations-heading-decoration-color: $black !default;
+$product-price-decoration-color: $black !default;
+$product-review-border-color: $light-gray !default;
+
+// Slider
+$slider-arrow-color: $black-alpha-50 !default;
+$slider-dot-color: $gray !default;
+$slider-dot-border-color: $gray !default;
+$slider-dot-selected-color: $white !default;
+$slider-dot-selected-border-color: $black !default;
+
+// Filters
+$filter-selected-background-color: $lightest-gray !default;
+$filter-selected-border-color: $light-gray !default;
+$filter-remove-icon-color: $dark-gray !default;
+$aside-heading-color: $black !default;
+
+// Checkout Progress
+$checkout-progress-color: $gray !default;
+$checkout-progress-active-color: $primary-color !default;
+$checkout-progress-completed-color: $primary-color !default;
+$checkout-progress-step-number-color: $white !default;
+
+// Social Shares
+$share-icon-color: $primary-color-dark !default;
+$share-icon-color-hover: $primary-color !default;
+
+// Blog
+$blog-comment-border-color: $light-gray !default;
+$blog-summary-border-color: $light-gray !default;

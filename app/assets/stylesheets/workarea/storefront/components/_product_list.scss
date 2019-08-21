@@ -1,0 +1,193 @@
+/*------------------------------------*\
+    #PRODUCT-LIST
+\*------------------------------------*/
+
+$product-list-media-ratio: $product-image-ratio !default;
+$product-list-item-media-width: 80px !default;
+$product-list-item-border: 1px solid $product-list-item-border-color !default;
+$product-list-item-info-font: $secondary-font-family !default;
+$product-list-id-color: $product-id-color !default;
+$product-list-info-item-margin: $spacing-unit 0 0 !default;
+
+
+.product-list {
+    @extend %list-reset;
+    margin-bottom: $vertical-margin;
+}
+
+.product-list--narrow {}
+
+    .product-list__item {
+        @extend %clearfix;
+        position: relative;
+        margin-bottom: $spacing-unit * 2;
+        border-bottom: $product-list-item-border;
+
+        @include respond-to ($medium-breakpoint) {
+            display: table;
+            margin-bottom: $spacing-unit * 3;
+            width: 100%;
+            border: $product-list-item-border;
+            border-spacing:  0;
+            border-collapse: collapse;
+        }
+
+        .product-list--narrow & {
+            @include respond-to ($medium-breakpoint) {
+                display: block;
+                width: auto;
+            }
+        }
+
+        .ui-dialog & {
+            @include respond-to($medium-breakpoint) {
+                min-width: $dialog-content-max-width;
+            }
+        }
+    }
+
+        /**
+         * 1. this block is designed to have two cells, maximum
+         */
+
+        .product-list__item-cell {
+            padding: $spacing-unit * 2;
+
+            @include respond-to ($medium-breakpoint) {
+                display: table-cell;
+                padding: ($spacing-unit * 3) ($spacing-unit * 4);
+                vertical-align: top;
+            }
+
+            .product-list--narrow & {
+                @include respond-to ($medium-breakpoint) {
+                    display: block;
+                    vertical-align: baseline;
+                }
+            }
+
+            .cart & {
+                @include respond-to ($medium-breakpoint) {
+                    padding: ($spacing-unit * 7) ($spacing-unit * 4) ($spacing-unit * 3);
+                }
+            }
+
+            & + & { /* [1] */
+                @include respond-to ($medium-breakpoint) {
+                    padding-left: ($spacing-unit * 2);
+                }
+
+                .product-list--narrow & {
+                    @include respond-to ($medium-breakpoint) {
+                        padding-left: 0;
+                    }
+                }
+
+                /**
+                 * Extend `.table {}` in _table.scss.
+                 */
+
+                .table {
+                    margin: 0;
+                }
+            }
+
+            /**
+             * Extend `.property {}` in _property.scss.
+             */
+
+            .property {
+                margin: $vertical-margin 0 0;
+            }
+        }
+
+            .product-list__summary {
+                display: table;
+                width: 100%;
+                border-spacing:  0;
+                border-collapse: collapse;
+            }
+
+                .product-list__media {
+                    display: table-cell;
+                    padding: 0 $spacing-unit 0 0;
+                    width: $product-list-item-media-width;
+                    max-width: $product-list-item-media-width;
+                    vertical-align: top;
+                }
+
+                    .product-list__media-link {
+                        display: block;
+                        padding: 0 0 ((1 / $product-list-media-ratio) * 100%);
+                        height: 0;
+                    }
+
+                        .product-list__media-image {
+                            display: block;
+                        }
+
+                .product-list__info {
+                    display: table-cell;
+                    padding-left: $spacing-unit * 3;
+                    font-family: $product-list-item-info-font;
+                    text-align: left;
+                    vertical-align: top;
+                }
+
+                    .product-list__name {
+                        margin: 0;
+                        font-size: 16px;
+                    }
+
+                    .product-list__id {
+                        margin: $product-list-info-item-margin;
+                        color: $product-list-id-color;
+                    }
+
+                    .product-list__price-group {
+                        margin: $product-list-info-item-margin;
+                    }
+
+                        .product-list__price {
+                            display: inline-block;
+                            margin: 0 ($spacing-unit / 2) 0 0;
+                            white-space: nowrap;
+                        }
+
+                    .product-list__option-group {
+                        margin: $product-list-info-item-margin;
+                    }
+
+                        .product-list__option {
+                            display: inline-block;
+                            margin: 0 ($spacing-unit / 2) 0 0;
+                            white-space: nowrap;
+                        }
+
+                    .product-list__customization {
+                        margin: $product-list-info-item-margin;
+                    }
+
+                    .product-list__quantity {
+                        margin: $product-list-info-item-margin;
+                    }
+
+                    .product-list__inventory-status {
+                        margin: ($spacing-unit / 2) 0 0;
+                    }
+
+            .product-list__item-actions {
+                margin-top: $spacing-unit * 2;
+                text-align: right;
+            }
+
+                .product-list__remove-item {
+                    position: absolute;
+                    top: 0;
+                    right: $spacing-unit * 2;
+
+                    @include respond-to($medium-breakpoint) {
+                        top: $spacing-unit * 2;
+                        right: $spacing-unit * 4;
+                    }
+                }

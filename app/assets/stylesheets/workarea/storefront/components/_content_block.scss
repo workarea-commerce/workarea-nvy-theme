@@ -1,0 +1,57 @@
+/*------------------------------------*\
+    #CONTENT-BLOCK
+\*------------------------------------*/
+
+$content-block-font-size: 16px !default;
+$content-block-font-size-wide: 18px !default;
+$page-header-promo-font-size: 12px !default;
+
+.content-block {
+    font-size: $content-block-font-size;
+
+    @include respond-to($medium-breakpoint) {
+        font-size: $content-block-font-size-wide;
+    }
+
+    .page-header__promo & {
+        font-size: $page-header-promo-font-size;
+
+        @include respond-to($wide-breakpoint) {
+            font-size: $content-block-font-size;
+        }
+    }
+}
+
+.content-block--hidden-for-small {
+    display: none;
+
+    @include respond-to($medium-breakpoint) {
+        display: block;
+    }
+}
+
+.content-block--hidden-for-medium {
+    @include respond-to($medium-breakpoint) {
+        display: none;
+    }
+
+    @include respond-to($wide-breakpoint) {
+        display: block;
+    }
+}
+
+.content-block--hidden-for-wide {
+    @include respond-to($wide-breakpoint) {
+        display: none;
+    }
+
+    @include respond-to($x-wide-breakpoint) {
+        display: block;
+    }
+}
+
+.content-block--hidden-for-x-wide {
+    @include respond-to($x-wide-breakpoint) {
+        display: none;
+    }
+}

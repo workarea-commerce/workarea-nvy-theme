@@ -1,0 +1,26 @@
+/*------------------------------------*\
+    #QUICKVIEW-BUTTON
+\*------------------------------------*/
+
+// scss-lint:disable ImportantRule
+
+$quickview-button-top-offset:  33% !default;
+
+/**
+ * 1. disable quickview buttons for touch devices
+ */
+.quickview-button {
+    display: none;
+
+    .product-summary:hover & {
+        @include respond-to($medium-breakpoint) {
+            @include center(horizontal);
+            display: block;
+            position: absolute;
+            top: $quickview-button-top-offset;
+            white-space: nowrap;
+        }
+
+        .touch & { display: none !important; } /* [1] */
+    }
+}

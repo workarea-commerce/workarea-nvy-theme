@@ -1,0 +1,14 @@
+.product-media
+  - if product.images.length > 1
+    %ul.product-media__alt-images{ data: { slick_slider: mobile_pdp_image_slider_options(product.id) } }
+      - product.images.each_with_index do |image, index|
+        %li.product-media__alt-image
+          - button_class = index == 0 ? 'product-media__alt-image-link product-media__alt-image-link--selected' : 'product-media__alt-image-link'
+          = link_to product_image_url(image, :zoom), class: button_class, target: '_blank', rel: 'noopener', data: { alternate_image_button: { src: product_image_url(image, :detail) }.to_json } do
+            %picture
+              %source{ srcset: product_image_url(image, :small_thumb), product_image_url(image, :small_thumb) => '1x', media: "(min-width: #{Workarea.config.storefront_break_points[:medium]}px)" }
+              = image_tag(product_image_url(image, :detail), alt: t('workarea.storefront.products.zoom'), itemprop: 'image')
+
+  .product-media__primary-image
+    = link_to(product_image_url(product.primary_image, :zoom), target: '_blank', rel: 'noopener', class: 'product-media__primary-image-link', data: { dialog_button: '' }) do
+      = image_tag product_image_url(product.primary_image, :detail), alt: t('workarea.storefront.products.image_alt_attribute', name: product.name), itemprop: 'image', class: 'product-media__primary-image-link-image'

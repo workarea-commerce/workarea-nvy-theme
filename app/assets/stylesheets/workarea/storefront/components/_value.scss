@@ -1,0 +1,95 @@
+/*------------------------------------*\
+    #VALUE
+\*------------------------------------*/
+
+$value-font: $secondary-font-family !default;
+$value-error-color: $red !default;
+
+$value-icon-size: $form-control-font-size !default;
+$value-icon-color: $input-icon-color !default;
+$value-icon-color-error: $invalid-color !default;
+$value-icon-color-valid: $valid-color !default;
+$value-icon-top-offset: 22px !default;
+
+
+/**
+ * 1. for use with `p` tags
+ */
+.value {
+    display: block;
+    position: relative;
+    margin: 0; /* [1] */
+    font-family: $value-font;
+
+    .button-property & {
+        display: inline-block;
+        margin-right: $spacing-unit;
+        vertical-align: middle;
+    }
+}
+
+    .value__note {
+        display: block;
+        font-size: $form-supplementary-font-size;
+    }
+
+    /**
+     * 1. focus ring matches error color
+     * 2. when specifically applied to a `.text-box` component
+     */
+
+    .value__error {
+        display: block;
+        position: relative;
+        color: $value-error-color;
+        font-size: $form-supplementary-font-size;
+
+        &:focus {
+            @include focus-ring($value-error-color); /* [1] */
+        }
+
+        &.text-box {/* [2] */
+            font-size: $form-control-font-size;
+            border-color: $value-error-color;
+        }
+
+        .button-property & {
+            position: absolute;
+            white-space: nowrap;
+        }
+    }
+
+    /**
+     * 1. Offset position from top when messaging is present.
+     * 2. Font size must be removed from the container of option buttons to get proper spacing
+     */
+
+    .value__icon {
+        @include center($to: vertical);
+        position: absolute;
+        top: $value-icon-top-offset; /* [1] */
+        right: $spacing-unit;
+        width: $value-icon-size;
+        height: $value-icon-size;
+        fill: $value-icon-color;
+
+        .value__error ~ & {
+            fill: $value-icon-color-error;
+        }
+
+        .value--valid &,
+        .text-box--valid ~ & {
+            fill: $value-icon-color-valid;
+        }
+    }
+
+    .value__button {
+        position: absolute;
+        top: $spacing-unit / 2;
+        right: $spacing-unit;
+    }
+
+    .value__option-group {
+        display: inline;
+        font-size: 0; /* [2] */
+    }

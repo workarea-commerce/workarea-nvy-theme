@@ -1,0 +1,43 @@
+/*------------------------------------*\
+    #BROWSING-CONTROLS
+\*------------------------------------*/
+
+
+.browsing-controls {
+    margin: 0 ($spacing-unit * 3) ($spacing-unit * 2);
+
+    @include respond-to($medium-breakpoint) {
+        margin: 0 0 ($spacing-unit * 2);
+    }
+}
+
+    .browsing-controls__heading {
+        @extend %heading;
+        @extend %heading--2;
+        margin-bottom: $spacing-unit;
+        text-align: center;
+
+        @include respond-to($medium-breakpoint) {
+            margin-bottom: 0;
+            text-align: left;
+        }
+    }
+
+    .browsing-controls__sort {
+        text-align: center;
+
+        @include respond-to($medium-breakpoint) {
+            text-align: right;
+        }
+    }
+
+        .browsing-controls__sort-form {
+            @include respond-to($medium-breakpoint) {
+                display: inline-block;
+            }
+        }
+
+    .browsing-controls__filter-button {
+        @extend %visible;
+        @extend %visible--for-small-only;
+    }

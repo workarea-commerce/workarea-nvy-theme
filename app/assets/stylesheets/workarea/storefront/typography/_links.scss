@@ -1,0 +1,21 @@
+/*------------------------------------*\
+    #LINKS
+\*------------------------------------*/
+
+a,
+%link,
+.link {
+    color: $link-color;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:focus {
+        color: $link-color-hover;
+    }
+
+    &:hover {
+        color: $link-color-hover;
+        text-decoration: underline;
+    }
+}

@@ -1,0 +1,107 @@
+require 'test_helper'
+
+module Workarea
+  decorate Storefront::AnalyticsSystemTest, with: :nvy_theme do
+    def test_announcing_category_view_event
+      visit storefront.category_path(@category)
+
+      # Decorated to remove parenthesis from filter link text
+      click_link 'Green 1'
+      click_link 'Medium 1'
+
+      events = find_analytics_events(for_event: 'categoryView')
+
+      assert_equal(1, events.count)
+      payload = events.first['arguments'].first
+
+      assert_equal('Test Category', payload['name'])
+      assert_equal('featured', payload['sort'])
+      assert_equal(1, payload['page'])
+      assert_equal(['Green'], payload['filters']['color'])
+      assert_equal(['Medium'], payload['filters']['size'])
+      assert_page_view
+    end
+
+    def test_announcing_search_results_view_event
+      visit storefront.search_path(q: 'test')
+
+      events = find_analytics_events(for_event: 'searchResultsView')
+      assert_equal(1, events.count)
+      payload = events.first['arguments'].first
+
+      assert_equal('test', payload['terms'])
+      assert_equal('relevance', payload['sort'])
+      assert_equal(1, payload['page'])
+      assert_equal({}, payload['filters'])
+      assert_equal(2, payload['totalResults'])
+      assert_page_view
+
+      # Decorated to remove parenthesis from filter link text
+      click_link 'Green 1'
+
+      events = find_analytics_events(for_event: 'searchResultsView')
+      assert_equal(1, events.count)
+      payload = events.first['arguments'].first
+
+      assert_equal(['Green'], payload['filters']['color'])
+      assert_equal(1, payload['totalResults'])
+      assert_page_view
+    end
+
+    def test_announcing_product_list_event
+      visit storefront.category_path(@category)
+
+      events = find_analytics_events(for_event: 'productList')
+      assert_equal(1, events.count)
+      payload = events.first['arguments'].first
+
+      assert_equal('productList', payload['event'])
+      assert_equal('Test Category', payload['name'])
+      assert_equal(1, payload['page'])
+
+      # Decorated due to change in per-page configuration
+      assert_equal(18, payload['per_page'])
+      assert_equal(2, payload['impressions'].count)
+
+      first_impression = payload['impressions'].first
+      assert_equal('PROD2', first_impression['id'])
+      assert_equal('Test Product 2', first_impression['name'])
+      assert_equal(false, first_impression['sale'])
+      assert_equal(12, first_impression['price'])
+      assert_equal('Test Category', first_impression['category'])
+      assert_equal(0, first_impression['position'])
+
+      second_impression = payload['impressions'].second
+      assert_equal('PROD1', second_impression['id'])
+      assert_equal('Test Product 1', second_impression['name'])
+      assert_equal(false, second_impression['sale'])
+      assert_equal(10, second_impression['price'])
+      assert_equal('Test Category', second_impression['category'])
+      assert_equal(1, second_impression['position'])
+
+      assert_page_view
+    end
+
+    def test_announcing_product_click_event
+      visit storefront.category_path(@category)
+
+      disable_dom_events
+      within '.product-summary__name', match: :first do
+        click_link 'Test Product 2'
+      end
+
+      events = find_analytics_events(for_event: 'productClick')
+      assert_equal(1, events.count)
+      payload = events.first['arguments'].first
+
+      assert_equal('PROD2', payload['id'])
+      assert_equal('Test Product 2', payload['name'])
+      assert_equal(false, payload['sale'])
+      assert_equal(12, payload['price'])
+      assert_equal('Test Category', payload['category'])
+      assert_equal('Test Category', payload['list'])
+      assert_equal(0, payload['position'])
+      assert_page_view
+    end
+  end
+end

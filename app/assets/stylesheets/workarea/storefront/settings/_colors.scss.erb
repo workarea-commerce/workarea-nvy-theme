@@ -1,0 +1,17 @@
+/*------------------------------------*\
+    #COLORS
+\*------------------------------------*/
+
+/**
+ * Color Variables
+ *
+ * These variables are loaded in from the theme's color scheme configurations
+ *
+ * To customize colors in this theme you can add your own color scheme
+ * file to the storefront/theme_config directory and reference
+ * it by name below.
+ */
+
+<% path = "\'workarea/storefront/theme_config/color_schemes/#{Workarea.config.theme[:color_scheme].downcase}_color_scheme\';" %>
+
+<%= "@import #{path}" %>

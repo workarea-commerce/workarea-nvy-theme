@@ -1,0 +1,137 @@
+/*------------------------------------*\
+    #SLICK-SLIDER
+\*------------------------------------*/
+
+$slick-slider-elements: (
+    slick-list,
+    slick-slider__nav,
+    slick-slider__dots
+) !default;
+
+$slick-slider-dots-width: 8px !default;
+$slick-slider-dots-bg-color: $slider-dot-color !default;
+$slick-slider-dots-selected-bg-color: $slider-dot-selected-color !default;
+$slick-slider-dots-border-width: 2px !default;
+$slick-slider-dots-border-color: $slider-dot-border-color !default;
+$slick-slider-dots-selected-border-color: $slider-dot-selected-border-color !default;
+$slick-slider-dots-spacing: 0 ($spacing-unit / 2) !default;
+
+$slick-slider-nav-color: $slider-arrow-color !default;
+$slick-slider-nav-bg-color: $transparent !default;
+$slick-slider-arrow-size: 24px !default;
+$slick-slider-arrows-offset: 0 !default;
+$slick-slider-arrows-vertical-offset: $spacing-unit * -1 !default;
+
+
+.slick-slider {}
+
+.slick-slider--waiting-for-images {
+    opacity: 0;
+}
+
+.slick-slider--images-loaded {
+    opacity: 1;
+    transition: opacity 0.15s ease-in;
+}
+
+        .slick-slider__image-wrapper {}
+
+            .slick-slider__image {}
+
+    .slick-slider__nav {
+        @extend %button-reset;
+        @include center('vertical');
+        z-index: index($slick-slider-elements, slick-slider__nav);
+        background: $slick-slider-nav-bg-color;
+        cursor: pointer;
+    }
+
+    .slick-slider__nav--prev {
+        left: $slick-slider-arrows-offset;
+
+        .slick-vertical & {
+            top: $slick-slider-arrows-vertical-offset;
+            right: 50%;
+            left: auto;
+            transform: translateX(50%) rotate(90deg);
+        }
+    }
+
+    .slick-slider__nav--next {
+        right: $slick-slider-arrows-offset;
+
+        .slick-vertical & {
+            top: auto;
+            right: 50%;
+            bottom: $slick-slider-arrows-vertical-offset;
+            transform: translateX(50%) rotate(90deg);
+        }
+    }
+
+        .slick-slider__nav-icon {
+            width: $slick-slider-arrow-size;
+            height: $slick-slider-arrow-size;
+            fill: $slick-slider-nav-color;
+        }
+
+        .slick-slider__nav-icon--left  {}
+        .slick-slider__nav-icon--right {}
+
+
+    .slick-slider__dots {
+        @extend %inline-list;
+        position: absolute;
+        right: $spacing-unit * 2;
+        bottom: $spacing-unit * 2;
+        z-index: index($slick-slider-elements, slick-slider__dots);
+        text-align: center;
+
+        .slick-vertical & {
+            @include center($to: vertical);
+            left: -100%;
+        }
+
+        li {
+            margin: $slick-slider-dots-spacing;
+
+            .slick-vertical & {
+                display: block;
+            }
+        }
+
+        button {
+            display: block;
+            padding: 0;
+            width:  $slick-slider-dots-width;
+            height: $slick-slider-dots-width;
+            font-size: 0;
+            background: $slick-slider-dots-bg-color;
+            border: $slick-slider-dots-border-width solid $slick-slider-dots-border-color;
+            cursor: pointer;
+            outline: 0;
+
+            &:hover,
+            &:focus {
+                outline: 0;
+            }
+        }
+    }
+
+
+/*------------------------------------*\
+    #SLICK-LIST
+\*------------------------------------*/
+
+.slick-list { z-index: index($slick-slider-elements, slick-list); }
+
+
+/*------------------------------------*\
+    #SLICK-ACTIVE
+\*------------------------------------*/
+
+.slick-active {
+    button {
+        background: $slick-slider-dots-selected-bg-color;
+        border-color: $slick-slider-dots-selected-border-color;
+    }
+}

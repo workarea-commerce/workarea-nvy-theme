@@ -1,0 +1,119 @@
+/*------------------------------------*\
+    #PRODUCT-SUMMARY
+\*------------------------------------*/
+
+$product-summary-width: 276px !default;
+$product-summary-small-width: 240px !default;
+$product-summary-hover-box-shadow: 0 2px 15px $black-alpha-15;
+
+$product-summary-media-ratio: $product-image-ratio !default;
+
+$product-summary-name-font: $secondary-font-family !default;
+$product-summary-name-color: $product-name-color !default;
+$product-summary-name-font-size: 16px !default;
+$product-summary-name-font-size-wide: 20px !default;
+
+
+/**
+ * 1. sets positioning context for any absolutely positioned product summary
+ *    child elements
+ * 2. Create a dropshadow on hover with performant transition
+ * 3. Offset Y axis on hover to make dropshadow look realistic
+ * 4. Disable dropshadow for product-summary--small
+ */
+
+.product-summary {
+    position: relative; /* [1] */
+    margin-bottom: $spacing-unit * 5;
+    padding: $spacing-unit;
+    transform: translateY(0);
+    transition: transform $transition-time ease-out;
+
+    @include respond-to($wide-breakpoint) {
+        padding: ($spacing-unit * 2);
+    }
+
+    &:after { /* [2] */
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        box-shadow: $product-summary-hover-box-shadow;
+        opacity: 0;
+        transition: opacity $transition-time ease-out;
+        pointer-events: none;
+        content: '';
+    }
+
+    &:hover {
+        transform: translateY(-2px); /* [3] */
+        transition-timing-function: ease-in;
+
+        &:after {
+            opacity: 1;  /* [2] */
+            transition-timing-function: ease-in;
+        }
+    }
+
+    .page-content__aside & {
+        padding: 0;
+    }
+}
+
+.product-summary--small {
+    &:after {
+        display: none; /* [4] */
+    }
+
+    &:hover {
+        transform: translateY(0); /* [4] */
+    }
+}
+
+    .product-summary__media {
+        margin: 0 auto ($spacing-unit * 3);
+        max-width: $product-summary-width;
+
+        @include respond-to($medium-breakpoint) {
+            margin-bottom: $spacing-unit * 2;
+        }
+
+        .product-summary--small & {
+            max-width: $product-summary-small-width;
+        }
+    }
+
+        .product-summary__media-link {
+            display: block;
+            padding: 0 0 ((1 / $product-summary-media-ratio) * 100%);
+            height: 0;
+        }
+
+            .product-summary__media-image {}
+
+    .product-summary__info {
+        margin: 0 auto;
+        max-width: $product-summary-width;
+
+        .product-summary--small & {
+            max-width: $product-summary-small-width;
+        }
+    }
+
+        .product-summary__name {
+            @extend %break-word;
+            margin: 0 0 $spacing-unit;
+            color: $product-summary-name-color;
+            font-size: $product-summary-name-font-size;
+            font-family: $product-summary-name-font;
+            font-weight: bold;
+
+            @include respond-to($medium-breakpoint) {
+                font-size: $product-summary-name-font-size-wide;
+            }
+
+            a {
+                color: $product-summary-name-color;
+            }
+        }

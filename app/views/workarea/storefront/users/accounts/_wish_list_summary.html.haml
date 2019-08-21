@@ -1,0 +1,15 @@
+.grid
+  .grid__cell
+    .box
+      .box__header
+        %span.box__action= link_to t('workarea.storefront.wish_lists.manage'), users_wish_list_path, class: 'button button--solid'
+        %h2.box__heading= t('workarea.storefront.wish_lists.wish_list')
+      .box__body
+        - if user.wish_list_items.any?
+          .grid
+            - user.wish_list_items.each do |item|
+              .grid__cell.grid__cell--50.grid__cell--33-at-medium
+                .product-summary{ itemscope: true, itemtype: 'http://schema.org/Product' }
+                  = render 'workarea/storefront/products/summary', product: item.product
+        - else
+          %p= t('workarea.storefront.wish_lists.empty_wish_list')

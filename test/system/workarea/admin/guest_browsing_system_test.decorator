@@ -1,0 +1,38 @@
+module Workarea
+  decorate Admin::GuestBrowsingSystemTest, with: :haven_theme do
+    def test_browsing_as_a_guest
+      create_user(
+        email: 'bcrouse@workarea.com',
+        password: 'W3bl1nc!',
+        super_admin: true
+      )
+
+      visit storefront.login_path
+
+      within '#login_form' do
+        fill_in 'email', with: 'bcrouse@workarea.com'
+        fill_in 'password', with: 'W3bl1nc!'
+        click_button 'login'
+      end
+
+      visit admin.users_path
+      click_link t('workarea.admin.users.index.browse_as_guest')
+
+      assert_current_path(storefront.root_path)
+      assert(page.has_content?('Success'))
+
+      page.find('.page-header__account-link').click
+      click_link t('workarea.storefront.users.account')
+      assert_current_path(storefront.login_path)
+
+      find('.message__dismiss-button').click
+
+      within_frame find('.admin-toolbar') do
+        click_button t('workarea.admin.toolbar.stop_guest_browsing')
+      end
+
+      assert_current_path(admin.users_path)
+      assert(page.has_content?('Success'))
+    end
+  end
+end

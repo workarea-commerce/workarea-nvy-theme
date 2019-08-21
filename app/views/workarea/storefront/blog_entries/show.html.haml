@@ -1,0 +1,79 @@
+- @title = @entry.browser_title
+- @breadcrumbs = @breadcrumbs
+
+- content_for :breadcrumbs do
+  %p.breadcrumbs__node-group
+    %span.breadcrumbs__node{ itemprop: 'breadcrumb' }
+      = link_to t('workarea.storefront.layouts.home'), root_path, rel: 'home'
+    %span.breadcrumbs__node{ itemprop: 'breadcrumb' }
+      = link_to @entry.blog.name, blog_path(@entry.blog)
+    %span.breadcrumbs__node{ itemprop: 'breadcrumb' } #{@entry.name}
+
+- content_for :head do
+  %link{ href: blog_entry_path(@entry), rel: 'canonical' }
+  - if @entry.thumbnail_image.present?
+    %meta{ property: 'og:image', content: @entry.thumbnail_image_url }
+  %meta{ property: 'global-id', content: @entry.to_global_id.to_param }
+  - unless @entry.meta_description.blank?
+    %meta{ name: :description, content: @entry.meta_description }
+
+- content_for :page_aside do
+  = render 'workarea/storefront/blogs/blog_navigation', blog: @entry.blog
+
+%article.blog-entry.view{ itemscope: true, itemtype: 'http://schema.org/BlogPosting' }
+
+  %heading.blog-entry__header
+    - if @entry.content_blocks_for(:blog_header).present?
+      != render_content_blocks(@entry.content_blocks_for('blog_header'))
+
+    - if @entry.has_thumbnail_image?
+      %meta{ itemprop: 'image', content: @entry.thumbnail_image_url }
+
+    %h1.blog-entry__title{ itemprop: 'mainEntityOfPage' }
+      %span{ itemprop: 'headline' }= @entry.name
+    %p.blog-entry__author{ itemprop: 'author' }= @entry.author
+    %p.blog-entry__datetime
+      %meta{ itemprop: 'dateModified', content: @entry.written_at }
+      = local_time(@entry.written_at, format: :long, itemprop: 'datePublished')
+    %p.blog-entry__comment-count{ itemprop: 'commentCount' }= link_to t('workarea.storefront.blogs.comments', count: @entry.comment_count), blog_entry_path(@entry, anchor: 'blog-entry-comments')
+    = render 'workarea/storefront/blog_metadata/publisher'
+
+    - if @entry.tags.present?
+      .blog-entry__tags
+        %p.blog-entry__label= t('workarea.storefront.blogs.tags')
+        %ul.blog-entry__tags-list{ itemprop: 'keywords' }
+          - @entry.tags.each do |tag|
+            %li.blog-entry__tags-list-item= link_to tag, blog_tagged_path(@entry.blog, tag)
+
+  .blog-entry__body{ itemprop: 'articleBody' }
+    - if @entry.content_blocks_for(:blog_content).present?
+      != render_content_blocks(@entry.content_blocks_for('blog_content'))
+
+  - if @entry.products.present?
+    .blog-entry__products
+      %h2.blog-entry__products-heading= t('workarea.storefront.blogs.related_products')
+      %ul.grid.grid--auto
+        - @entry.products.each do |product|
+          %li.grid__cell>
+            .product-summary{ itemscope: true, itemtype: 'http://schema.org/Product' }
+              = render 'workarea/storefront/products/summary', product: product
+
+  #blog-entry-comments.blog-entry__comments
+
+    - if @entry.comments.present?
+      .blog-entry__section
+        .blog-entry__comments-header
+          %h2.blog-entry__comments-heading= t('workarea.storefront.blogs.comments', count: @entry.comment_count)
+          %p.blog-entry__write-comment-link= link_to t('workarea.storefront.blogs.write_comment'), '#write-comment', class: 'button button--solid'
+        %ul.blog-entry__comment-group
+          - @entry.comments.each do |comment|
+            %li.blog-entry__comment{ itemprop: 'comment', itemscope: true, itemType: 'http://schema.org/Comment' }
+              %p.blog-entry__comment-item.blog-entry__comment-item--author
+                = comment.user_info
+              %p.blog-entry__comment-item.blog-entry__comment-item--datetime
+                = local_time(comment.created_at, format: :long, itemprop: 'dateCreated');
+
+              %p.blog-entry__comment-item.blog-entry__comment-item--body{itemprop: 'text'}
+                = comment.body
+
+    #write-comment.blog-entry__section{ data: { blog_comment_placeholder: blog_entry_comments_path(@entry) } }

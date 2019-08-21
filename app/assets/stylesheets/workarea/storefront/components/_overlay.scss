@@ -1,0 +1,21 @@
+/*------------------------------------*\
+    #OVERLAY
+\*------------------------------------*/
+
+$overlay-background-color: $overlay-shadow-color !default;
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: index($components, overlay);
+    background-color: $overlay-background-color;
+    cursor: default;
+}
+
+.overlay--active {
+    display: block;
+}

@@ -1,0 +1,21 @@
+require "test_helper"
+
+module Workarea
+  decorate Storefront::StyledSelectsSystemTest, with: :nvy_theme do
+    def test_styled_select
+      visit storefront.style_guides_path
+
+      Capybara.match = :first
+
+      within "#components" do
+        click_on "styled-select"
+      end
+
+      assert_selector ".styled-select"
+
+      within ".styled-select" do
+        assert_selector "select"
+      end
+    end
+  end
+end

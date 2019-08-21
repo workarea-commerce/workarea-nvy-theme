@@ -1,0 +1,25 @@
+%nav.checkout-progress
+  .checkout-progress__step{ class: ('checkout-progress__step--active' if @checkout_step == 'addresses') }
+    - if @checkout_step == 'addresses'
+      %span.checkout-progress__text
+        %span.checkout-progress__step-number= t('workarea.storefront.checkouts.addresses_step_number')
+        = t('workarea.storefront.checkouts.addresses_step_text')
+    - else
+      = link_to checkout_addresses_path, class: 'checkout-progress__link' do
+        %span.checkout-progress__step-number= t('workarea.storefront.checkouts.addresses_step_number')
+        = t('workarea.storefront.checkouts.addresses_step_text')
+  .checkout-progress__divider
+  .checkout-progress__step{ class: ('checkout-progress__step--active' if @checkout_step == 'shipping') }
+    - if @checkout_step.in?(%w(addresses shipping))
+      %span.checkout-progress__text
+        %span.checkout-progress__step-number= t('workarea.storefront.checkouts.shipping_step_number')
+        = t('workarea.storefront.checkouts.shipping_step_text')
+    - else
+      = link_to checkout_shipping_path, class: 'checkout-progress__link' do
+        %span.checkout-progress__step-number= t('workarea.storefront.checkouts.shipping_step_number')
+        = t('workarea.storefront.checkouts.shipping_step_text')
+  .checkout-progress__divider
+  .checkout-progress__step{ class: ('checkout-progress__step--active' if @checkout_step == 'payment') }
+    %span.checkout-progress__text
+      %span.checkout-progress__step-number= t('workarea.storefront.checkouts.payment_step_number')
+      = t('workarea.storefront.checkouts.payment_step_text')

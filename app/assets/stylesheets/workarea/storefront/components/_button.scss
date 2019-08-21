@@ -1,0 +1,97 @@
+/*------------------------------------*\
+    #BUTTON
+\*------------------------------------*/
+
+$button-font-family: $secondary-font-family !default;
+$button-font-weight: bold !default;
+
+$button-color: $button-color !default;
+$button-bg-color: $button-background-color !default;
+$button-border-color: $button-border-color !default;
+$button-border-color-hover: $button-border-color-hover !default;
+
+$button-filled-color: $button-filled-color !default;
+$button-filled-background-color: $button-filled-background-color !default;
+$button-filled-background-color-hover: $button-filled-background-color-hover !default;
+
+$button-disabled-color: $button-disabled-color !default;
+$button-disabled-background-color: $button-disabled-background-color !default;
+
+$button-padding: 5px 32px !default;
+$button-small-padding: 3px 20px !default;
+$button-large-padding: 9px 48px !default;
+$button-extra-large-padding: 18px 61px !default;
+
+$button-font-size: $font-size !default;
+$button-small-font-size: $font-size - 2px !default;
+$button-large-font-size: $font-size !default;
+$button-extra-large-font-size: $font-size + 2px !default;
+
+
+/**
+ * 1. Override hover styles for links
+ */
+.button {
+    @extend %button-reset;
+    display: inline-block;
+    padding: $button-padding;
+    color: $button-color;
+    font-size: $button-font-size;
+    font-family: $button-font-family;
+    font-weight: $button-font-weight;
+    background: $button-bg-color;
+    border: 1px solid $button-border-color;
+    cursor: pointer;
+
+    &:hover {
+        color: $button-color; /* [1] */
+        text-decoration: none; /* [1] */
+        border-color: $button-border-color-hover;
+    }
+
+    &:disabled {
+        color: $button-disabled-color;
+        background-color: $button-disabled-background-color;
+        border-color: $button-disabled-background-color;
+
+        &:hover {
+            background-color: $button-disabled-background-color;
+        }
+    }
+}
+
+.button--solid {
+    color: $button-filled-color;
+    background: $button-filled-background-color;
+    border: 0;
+
+    &:focus,
+    &:hover {
+        color: $button-filled-color;
+        background: $button-filled-background-color-hover;
+    }
+}
+
+.button--small {
+    padding: $button-small-padding;
+    font-size: $button-small-font-size;
+}
+
+.button--large {
+    padding: $button-large-padding;
+    font-size: $button-large-font-size;
+}
+
+.button--extra-large {
+    padding: $button-extra-large-padding;
+    font-size: $button-extra-large-font-size;
+}
+
+.button--margin-bottom {
+    margin-bottom: $spacing-unit * 2;
+}
+
+.button--full {
+    width: 100%;
+    text-align: center;
+}

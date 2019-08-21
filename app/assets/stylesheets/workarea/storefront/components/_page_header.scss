@@ -1,0 +1,237 @@
+/*------------------------------------*\
+    #PAGE-HEADER
+\*------------------------------------*/
+
+$page-header-promo-background: $page-header-promo-background-color !default;
+$page-header-promo-color: $page-header-promo-color !default;
+
+$page-header-mobile-nav-icon-color: $page-header-icon-color !default;
+$page-header-mobile-nav-icon-size: 32px !default;
+
+$page-header-utility-nav-icon-color: $page-header-icon-color !default;
+$page-header-utility-nav-icon-size: 24px !default;
+
+$page-header-main-height: 104px !default;
+$page-header-main-height-wide: 80px !default;
+$page-header-logo-width:   40px !default;
+$page-header-logo-width-wide:   160px !default;
+$page-header-logo-height:  40px !default;
+$page-header-logo-height-wide:  64px !default;
+
+$page-header-cart-count-color: $cart-count-color !default;
+$page-header-cart-count-background-color: $cart-count-background-color !default;
+$page-header-cart-count-size: 19px !default;
+$page-header-cart-count-font-size: 12px !default;
+$page-header-cart-count-font-family: $secondary-font-family !default;
+
+$page-header-search-width: 100% !default;
+$page-header-search-width-wide: 348px !default;
+$page-header-search-icon-size: 16px !default;
+
+
+.page-header {
+    position: relative;
+    z-index: index($page-container, page-header);
+    text-align: center;
+
+    @include respond-to($wide-breakpoint) {
+        text-align: left;
+    }
+}
+
+.page-header--checkout {
+    margin-bottom: $vertical-margin;
+    padding-top: ($spacing-unit * 2);
+    text-align: center;
+}
+
+    .page-header__main {
+        display: flex;
+        position: relative;
+        z-index: index($components, header-main);
+        margin: 0 auto;
+        padding: $spacing-unit;
+        height: $page-header-main-height;
+        max-width: $x-wide-breakpoint;
+        flex: 0 1 auto;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+        @include respond-to($wide-breakpoint) {
+            height: $page-header-main-height-wide;
+            flex-wrap: nowrap;
+        }
+    }
+
+    .page-header__mobile-nav {
+        display: inline-block;
+        float: left;
+        order: 1;
+
+        @include respond-to($wide-breakpoint) {
+            display: none;
+        }
+    }
+
+        .page-header__mobile-nav-icon {
+            width: $page-header-mobile-nav-icon-size;
+            height: $page-header-mobile-nav-icon-size;
+            fill: $page-header-mobile-nav-icon-color;
+        }
+
+    /**
+     * 1. Reset position and transform from centered
+     */
+    .page-header__logo-container {
+        @include center($to: 'horizontal');
+        display: inline-block;
+        top: $spacing-unit;
+        order: 2;
+
+        @include respond-to($wide-breakpoint) {
+            position: static; /* [1] */
+            transform: initial; /* [1] */
+            order: 1;
+        }
+    }
+
+        .page-header__logo {
+            display: block;
+            width:  $page-header-logo-width;
+            height: $page-header-logo-height;
+
+            @include respond-to($wide-breakpoint) {
+                width:  $page-header-logo-width-wide;
+                height: $page-header-logo-height-wide;
+            }
+
+            .page-header--checkout & {
+                display: inline-block;
+                margin-bottom: $spacing-unit * 2;
+                width:  $page-header-logo-width;
+                height: $page-header-logo-height;
+            }
+        }
+
+        .page-header__logo--small {
+            @include respond-to($wide-breakpoint) {
+                display: none;
+            }
+        }
+
+        .page-header__logo--wide {
+            display: none;
+
+            @include respond-to($wide-breakpoint) {
+                display: block;
+            }
+        }
+
+    .page-header__account-link {
+        @extend %button-reset;
+        cursor: pointer;
+    }
+
+    .page-header__logout-link {
+        &:before { content: '('; }
+        &:after  { content: ')'; }
+    }
+
+    .page-header__cart-link {
+        position: relative;
+    }
+
+        .page-header__cart-count {
+            position: absolute;
+            right: -30%;
+            bottom: 0%;
+            width: $page-header-cart-count-size;
+            color: $page-header-cart-count-color;
+            font-size: $page-header-cart-count-font-size;
+            font-family: $page-header-cart-count-font-family;
+            line-height: $page-header-cart-count-size;
+            text-align: center;
+            background-color: $page-header-cart-count-background-color;
+            border-radius: 50%;
+        }
+
+
+    .page-header__utility-nav {
+        margin-right: $spacing-unit;
+        order: 3;
+    }
+
+        .page-header__utility-nav-item {
+            margin-left: $spacing-unit * 2;
+
+            @include respond-to($wide-breakpoint) {
+                margin-left: $spacing-unit * 6;
+            }
+        }
+
+        .page-header__icon {
+            width: $page-header-utility-nav-icon-size;
+            height: $page-header-utility-nav-icon-size;
+            fill: $page-header-utility-nav-icon-color;
+        }
+
+    .page-header__locale {}
+
+    /**
+     * 2. Push flex item to right
+     */
+    .page-header__search {
+        display: block;
+        margin-top: $spacing-unit;
+        width: $page-header-search-width;
+        text-align: center;
+        order: 4;
+
+        @include respond-to($wide-breakpoint) {
+            margin-top: 0;
+            margin-left: auto; /* [2] */
+            width: $page-header-search-width-wide;
+            text-align: right;
+            order: 2;
+        }
+    }
+
+        .page-header__search-form {
+            position: relative;
+        }
+
+            .page-header__search-value {
+                display: block;
+                vertical-align: top;
+            }
+
+            .page-header__search-button {
+                @extend %button-reset;
+                position: absolute;
+                top: 50%;
+                right: $spacing-unit;
+                width: $page-header-search-icon-size;
+                height: $page-header-search-icon-size;
+                transform: translate(-50%, -50%);
+                cursor: pointer;
+            }
+
+                .page-header__search-icon {
+                    width: $page-header-search-icon-size;
+                    height: $page-header-search-icon-size;
+                    fill: $page-header-utility-nav-icon-color;
+                }
+
+
+    /**
+     * 1. make sure no content block can inject `p` tags that will break layout.
+     */
+    .page-header__promo {
+        padding: ($spacing-unit / 2) $spacing-unit;
+        color: $page-header-promo-color;
+        text-align: center;
+        background-color: $page-header-promo-background;
+
+        p { margin: 0; } /* [1] */
+    }

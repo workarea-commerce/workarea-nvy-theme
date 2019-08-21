@@ -1,0 +1,199 @@
+/*------------------------------------*\
+    #VERMILLION-COLOR-SCHEME
+\*------------------------------------*/
+/**
+ * Color Variables
+ *
+ * These variables should always be aliased as Functional Variables at
+ * the bottom of this file. Using color name variables outside of this file may
+ * cause errors when changing color scheme.
+ */
+
+$blue: #3366cc !default;
+$yellow: #fdcc5d !default;
+$red: #e52828 !default;
+$green: #19c06a !default;
+
+
+/**
+* Grey scale
+*/
+
+$white: #ffffff !default;
+$light-gray: #dfdce3 !default;
+$gray: #9b99a8 !default;
+$black: #000000 !default;
+
+$black-alpha-15: rgba($black, 0.15) !default;
+$black-alpha-50: rgba($black, 0.50) !default;
+$white-alpha-50: rgba($white, 0.50) !default;
+$transparent: transparent !default;
+
+
+
+/**
+* Brand Color Variables
+*/
+
+$merlot: #6d171c !default;
+$rose-taupe: #8c5e58 !default;
+$rusty: #a12512 !default;
+$ginger: #d83218 !default;
+
+$meadow: #739e82 !default;
+$dark-beige: #ad824f !default;
+$beige: #d8bfa2 !default;
+$light-beige: #f6f7eb !default;
+$off-black: #393e41 !default;
+
+// TODO: Figure out a better way to handle this. Preferred breaking BEM to doing more gross scss.erb dynamic imports
+.color-box__swatch--off-black { background: $off-black; }
+.color-box__swatch--merlot { background: $merlot; }
+.color-box__swatch--rose-taupe { background: $rose-taupe; }
+.color-box__swatch--rusty { background: $rusty; }
+.color-box__swatch--ginger { background: $ginger; }
+.color-box__swatch--meadow { background: $meadow; }
+.color-box__swatch--dark-beige { background: $dark-beige; }
+.color-box__swatch--beige { background: $beige; }
+.color-box__swatch--light-beige { background: $light-beige; }
+
+
+
+/**
+ * FUNCTIONAL COLOR VARIABLES
+ */
+
+// Generic
+
+$primary-color: $ginger !default;
+$primary-color-dark: $rusty !default;
+
+$background-color: $white !default;
+$background-color-component: $light-beige !default;
+
+$font-color: $off-black !default;
+$link-color: $primary-color !default;
+$link-color-hover: $primary-color-dark !default;
+
+$border-color: $beige !default;
+$highlight-color: $dark-beige !default;
+$overlay-shadow-color: $black-alpha-15 !default;
+$box-background-color: $light-beige !default;
+
+// Buttons
+$button-color: $black !default;
+$button-background-color: $white !default;
+$button-border-color: $primary-color-dark !default;
+$button-border-color-hover: $primary-color !default;
+
+$button-filled-color: $white !default;
+$button-filled-background-color: $primary-color-dark !default;
+$button-filled-background-color-hover: $primary-color !default;
+
+$button-disabled-color: $rose-taupe !default;
+$button-disabled-background-color: $beige !default;
+
+// Forms
+$forms-color: $font-color !default;
+$forms-bg-color: $background-color !default;
+$forms-disabled-color: $beige !default;
+$forms-disabled-bg-color: $light-beige !default;
+$forms-placeholder-color: $beige !default;
+
+// Inputs
+$valid-color: $meadow !default;
+$invalid-color: $merlot !default;
+$input-border-color: $beige !default;
+$input-background-color: $transparent !default;
+$input-disabled-color: $rose-taupe !default;
+$input-disabled-background-color: $white !default;
+$input-disabled-border-color: $rose-taupe !default;
+$focus-ring-color: $primary-color-dark !default;
+$input-icon-color: $beige !default;
+
+$input-radio-color: $primary-color !default;
+$input-radio-border-color: $primary-color !default;
+$input-radio-fill-color: $white !default;
+$input-radio-background-color: $primary-color !default;
+
+$input-checkbox-color: $primary-color !default;
+$input-checkbox-border-color: $primary-color !default;
+$input-checkbox-fill-color: $white !default;
+
+// Tables
+$table-totals-border-color: $beige !default;
+$table-totals-total-border-color: $rose-taupe !default;
+
+// Page Header
+$page-header-promo-color: $white !default;
+$page-header-promo-background-color: $primary-color-dark !default;
+$page-header-icon-color: $off-black !default;
+
+$cart-count-color: $white !default;
+$cart-count-background-color: $primary-color !default;
+
+$utility-nav-background-color: $white !default;
+$utility-nav-heading-color: $black !default;
+
+//Page Footer
+$page-footer-color: $white !default;
+$page-footer-checkout-color: $white !default;
+$page-footer-background-color: $merlot !default;
+$page-footer-checkout-background-color: $merlot !default;
+$page-footer-color: $white !default;
+$page-footer-link-color: $white !default;
+$page-footer-link-color-hover: $white !default;
+$page-footer-heading-decoration-color: $light-beige !default;
+$page-footer-border-color: $light-beige !default;
+$page-footer-copyright-color: $light-beige !default;
+
+// Navigation
+$primary-navigation-background-color: $light-beige !default;
+$primary-navigation-link-color: $primary-color-dark !default;
+$primary-navigation-dropdown-background-color: $light-beige !default;
+
+$mobile-navigation-background-color: $background-color-component !default;
+$mobile-navigation-link-color: $primary-navigation-link-color !default;
+$mobile-navigation-close-button-color: $black !default;
+$mobile-navigation-header-background-color: $light-beige !default;
+$mobile-navigation-header-border-color: $beige !default;
+
+// UI Dialog
+$dialog-header-bacground-color: $white !default;
+$dialog-overlay-color: $black-alpha-50 !default;
+
+// Product
+$product-name-color: $black !default;
+$product-id-color: $beige !default;
+$product-swatch-selected-outline-color: $black !default;
+$product-list-item-border-color: $beige !default;
+$product-recommendations-heading-decoration-color: $black !default;
+$product-price-decoration-color: $black !default;
+$product-review-border-color: $beige !default;
+
+// Slider
+$slider-arrow-color: $black-alpha-50 !default;
+$slider-dot-color: $beige !default;
+$slider-dot-border-color: $beige !default;
+$slider-dot-selected-color: $white !default;
+$slider-dot-selected-border-color: $black !default;
+
+// Filters
+$filter-selected-background-color: $light-beige !default;
+$filter-selected-border-color: $beige !default;
+$filter-remove-icon-color: $off-black !default;
+$aside-heading-color: $merlot !default;
+
+// Checkout Progress
+$checkout-progress-color: $beige !default;
+$checkout-progress-active-color: $primary-color !default;
+$checkout-progress-completed-color: $primary-color !default;
+$checkout-progress-step-number-color: $white !default;
+
+// Social Shares
+$share-icon-color: $primary-color-dark !default;
+$share-icon-color-hover: $primary-color !default;
+
+// Blog
+$blog-comment-border-color: $beige !default;
+$blog-summary-border-color: $beige !default;

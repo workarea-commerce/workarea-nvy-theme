@@ -1,0 +1,46 @@
+/*------------------------------------*\
+    #PRODUCT-PRICES
+\*------------------------------------*/
+
+$product-prices-font: $secondary-font-family !default;
+$product-prices-details-font-size: 16px !default;
+
+$product-prices-details-decoration-offset: -4px !default;
+$product-prices-details-decoration-height: 3px !default;
+$product-prices-details-decoration-width: 100% !default;
+$product-prices-details-decoration-color: $product-price-decoration-color !default;
+
+
+.product-prices {
+    font-family: $product-prices-font;
+}
+
+.product-prices--summary {}
+
+.product-prices--details {
+    margin-bottom: $vertical-margin;
+    font-size: $product-prices-details-font-size;
+}
+
+    .product-prices__price {
+        display: block;
+        margin: 0;
+        white-space: nowrap;
+
+        .product-prices--details & {
+            position: relative;
+            display: inline;
+            margin-right: $spacing-unit * 3;
+            white-space: normal;
+
+            &:first-of-type:after {
+                position: absolute;
+                bottom: $product-prices-details-decoration-offset;
+                left: 0;
+                width: $product-prices-details-decoration-width;
+                height: $product-prices-details-decoration-height;
+                background-color: $product-prices-details-decoration-color;
+                content: '';
+            }
+        }
+    }

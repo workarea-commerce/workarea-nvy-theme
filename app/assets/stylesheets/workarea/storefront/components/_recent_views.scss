@@ -1,0 +1,36 @@
+/*------------------------------------*\
+    #RECENT-VIEWS
+\*------------------------------------*/
+
+$recent-views-aside-max-width: 170px !default;
+
+.recent-views {}
+
+.recent-views--aside {
+    max-width: $recent-views-aside-max-width;
+}
+
+    .recent-views__section {
+        .recent-views--aside & {
+            margin-bottom: $vertical-margin;
+        }
+    }
+
+    .recent-views__section--products {}
+    .recent-views__section--categories {}
+
+        .recent-views__heading {
+            @extend %heading;
+            @extend %heading--5;
+            @extend %heading--upcase;
+        }
+
+        .recent-views__list {
+            .recent-views--aside & {
+                @extend %list-reset;
+            }
+        }
+
+            .recent-views__item {}
+
+                .recent-views__link {}

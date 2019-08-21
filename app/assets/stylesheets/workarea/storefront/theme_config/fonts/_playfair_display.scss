@@ -1,0 +1,37 @@
+/*------------------------------------*\
+    #PLAYFAIR-DISPLAY
+\*------------------------------------*/
+
+// scss-lint:disable VariableForProperty
+
+@font-face {
+    font-family: 'Playfair Display';
+    font-weight: normal;
+    font-style: normal;
+    src: font-url('workarea/storefront/Playfair_Display/playfairdisplay_regular_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/Playfair_Display/playfairdisplay_regular_webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    font-weight: normal;
+    font-style: italic;
+    src: font-url('workarea/storefront/Playfair_Display/playfairdisplay_italic_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/Playfair_Display/playfairdisplay_italic_webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    font-weight: bold;
+    font-style: normal;
+    src: font-url('workarea/storefront/Playfair_Display/playfairdisplay_bold_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/Playfair_Display/playfairdisplay_bold_webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    font-weight: bold;
+    font-style: italic;
+    src: font-url('workarea/storefront/Playfair_Display/playfairdisplay_bolditalic_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/Playfair_Display/playfairdisplay_bolditalic_webfont.woff') format('woff');
+}

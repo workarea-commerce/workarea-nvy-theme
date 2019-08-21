@@ -1,0 +1,59 @@
+/*------------------------------------*\
+    #INPUT-RADIO
+\*------------------------------------*/
+
+$input-radio-size: 16px !default;
+$input-radio-inner-size: 8px !default;
+$input-radio-color: $input-radio-color !default;
+$input-radio-border: 1px solid $input-radio-border-color !default;
+
+$input-radio-fill-color: $input-radio-fill-color !default;
+$input-radio-box-shadow: 0 0 0 0 $input-radio-fill-color inset !default;
+$input-radio-box-shadow-checked: 0 0 0 ($input-radio-size / 2) $input-radio-fill-color inset !default;
+$input-radio-inner-bg-color: $input-radio-background-color !default;
+$input-radio-easing-function: cubic-bezier(0.75, 0.01, 0.48, 2);
+
+
+input[type='radio'] {
+    position: relative;
+    width: $input-radio-size;
+    height: $input-radio-size;
+    border: $input-radio-border;
+    border-radius: 50%;
+    box-shadow: $input-radio-box-shadow;
+    transition: box-shadow 0.15s $input-radio-easing-function; /* [1] */
+    appearance: none;
+    vertical-align: middle;
+
+    &:before {
+        @include center;
+        display: block;
+        width: $input-radio-inner-size;
+        height: $input-radio-inner-size;
+        text-align: center;
+        background-color: $input-radio-inner-bg-color;
+        border-radius: 50%;
+        opacity: 0;
+        content: '';
+        transform: translate(-50%, -50%);
+        transition: transform 0.15s $input-radio-easing-function, opacity 0.15s $input-radio-easing-function;
+    }
+
+    &:checked:before {
+        opacity: 1;
+    }
+
+    &:checked {
+        box-shadow: $input-radio-box-shadow-checked;
+    }
+
+    &.visually-hidden {
+        width: 0;
+        height: 0;
+        border: 0;
+
+        &:before {
+            display: none;
+        }
+    }
+}

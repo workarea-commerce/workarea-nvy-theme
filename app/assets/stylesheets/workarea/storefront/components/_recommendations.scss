@@ -1,0 +1,40 @@
+/*------------------------------------*\
+    #RECOMMENDATIONS
+\*------------------------------------*/
+
+$recommendations-heading-decoration-width: 40px !default;
+$recommendations-heading-decoration-height: 3px !default;
+$recommendations-heading-decoration-color: $product-recommendations-heading-decoration-color !default;
+
+
+.recommendations {
+
+    .product-detail-container & {
+        margin-top: $spacing-unit * 6;
+
+        @include respond-to($medium-breakpoint) {
+            margin-top: $spacing-unit * 8;
+        }
+    }
+}
+
+    .recommendations__heading {
+        @extend %heading;
+        @extend %heading--2;
+        position: relative;
+        margin-top: $spacing-unit * 4;
+        text-align: center;
+
+        &:before {
+            position: absolute;
+            top: $spacing-unit * -2;
+            left: 50%;
+            width: $recommendations-heading-decoration-width;
+            height: $recommendations-heading-decoration-height;
+            background-color: $recommendations-heading-decoration-color;
+            transform: translateX(-50%);
+            content: '';
+        }
+    }
+
+    .recommendations__products {}

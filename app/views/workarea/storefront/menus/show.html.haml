@@ -1,0 +1,11 @@
+- if params[:mobile_nav]
+  = link_to mobile_nav_return_path, class: 'mobile-nav__close-button' do
+    = inline_svg('workarea/storefront/icons/close.svg', class: 'mobile-nav__close-button-icon', title: t('workarea.storefront.mobile_nav.close'))
+
+  .mobile-nav__header
+    = link_to menus_path(return_to: mobile_nav_return_path), class: 'mobile-nav__back-button' do
+      %span.mobile-nav__back-button-icon ◀
+      %span.mobile-nav__back-button-text= @menu.name
+
+%div{ class: params[:mobile_nav] ? 'mobile-nav__content' : 'primary-nav__content' }
+  = render_content_blocks(@menu.content_blocks)

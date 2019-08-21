@@ -1,0 +1,10 @@
+- if product.purchasable?
+  = form_tag add_to_users_wish_list_path, method: 'post', class: 'wish-list-form', data: { wish_list_form: '' } do
+    = hidden_field_tag :product_id, product.id, id: "wishlist_product_id_#{dom_id(product)}"
+    = hidden_field_tag :sku, product.current_sku, id: "wishlist_sku_#{dom_id(product)}"
+    = hidden_field_tag :quantity, 1, id: "wishlist_quantity_#{dom_id(product)}"
+    = hidden_field_tag :return_to, users_wish_list_path, id: "wishlist_return_to_#{dom_id(product)}"
+    .wish-list-form__action
+      = button_tag value: 'add_to_wish_list', class: 'text-button' do
+        = inline_svg('workarea/storefront/icons/heart.svg', class: 'text-button__icon')
+        = t('workarea.storefront.wish_lists.add_to_wish_list')

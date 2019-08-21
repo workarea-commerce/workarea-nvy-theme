@@ -1,0 +1,63 @@
+/*------------------------------------*\
+    #WRITE-REVIEW
+\*------------------------------------*/
+
+$write-review-fill-color:   $yellow !default;
+$write-review-empty-color:  $transparent !default;
+$write-review-star-size:    16px !default;
+
+
+.write-review {}
+
+    .write-review__ratings {
+        @extend %inline-list;
+
+
+        .js & {
+            @extend %clearfix;
+        }
+    }
+
+        .write-review__rating {
+            font-size: $write-review-star-size;
+
+            .js & {
+                padding-right: ($spacing-unit / 2);
+                float: left;
+            }
+        }
+
+            .write-review__rating-input {
+                margin: 0 ($spacing-unit / 2) 0 0;
+
+                .js & {
+                    @extend %visually-hidden;
+                }
+            }
+
+            .write-review__star {}
+
+                .write-review__star-icon {
+                    width:  $write-review-star-size;
+                    height: $write-review-star-size;
+                    fill: $write-review-empty-color;
+                    stroke: $write-review-fill-color;
+
+                    .write-review__star--hovered &,
+                    .write-review__star--active & {
+                        fill: $write-review-fill-color;
+                    }
+                }
+
+
+                .write-review__star--hovered {
+                    opacity: 0.4;
+                }
+
+                .write-review__star--active {
+                    opacity: 1;
+                }
+
+                    .write-review__star-text {
+                        @extend %hidden-if-js-enabled;
+                    }

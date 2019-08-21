@@ -1,0 +1,31 @@
+/*------------------------------------*\
+    #BREADCRUMBS
+\*------------------------------------*/
+
+$breadcrumb-font-size: 12px !default;
+$breadcrumb-font-family: $secondary-font-family !default;
+$breadcrumb-node-separator: '/' !default;
+
+
+/**
+ * 1. adds visual separator for adjacent `.breadcrumbs_node`
+ */
+
+.breadcrumbs {
+    margin-bottom: $vertical-margin;
+    font-size: $breadcrumb-font-size;
+    font-family: $breadcrumb-font-family;
+}
+
+    .breadcrumbs__node-group {}
+
+        .breadcrumbs__node {
+            & + &:before { /* [1] */
+                margin: 0 ($spacing-unit / 2);
+                content: $breadcrumb-node-separator;
+            }
+        }
+
+            .breadcrumbs__link {}
+
+            .breadcrumbs__text {}

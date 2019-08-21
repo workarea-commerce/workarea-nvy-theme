@@ -1,0 +1,30 @@
+/*------------------------------------*\
+    #SHARE-BUTTONS
+\*------------------------------------*/
+
+$share-buttons-icon-size: 20px !default;
+$share-buttons-icon-color: $share-icon-color !default;
+$share-buttons-icon-color-hover: $share-icon-color-hover !default;
+
+
+.share-buttons {
+    @extend %inline-list;
+    margin: 0 0 ($spacing-unit * 2);
+}
+
+    .share-buttons__item {
+        margin: 0 ($spacing-unit * 2);
+        vertical-align: middle;
+    }
+
+        .share-buttons__button {}
+
+            .share-buttons__icon {
+                width: $share-buttons-icon-size;
+                height: $share-buttons-icon-size;
+                fill: $share-buttons-icon-color;
+
+                .share-buttons__button:hover & {
+                    fill: $share-buttons-icon-color-hover;
+                }
+            }

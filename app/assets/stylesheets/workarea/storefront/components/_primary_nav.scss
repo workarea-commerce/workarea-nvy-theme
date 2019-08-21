@@ -1,0 +1,76 @@
+/*------------------------------------*\
+    #PRIMARY-NAV
+\*------------------------------------*/
+
+$primary-nav-bg-color: $primary-navigation-background-color !default;
+$primary-nav-content-bg-color: $primary-navigation-dropdown-background-color !default;
+$primary-nav-content-box-shadow: 0 4px 4px -4px $black-alpha-50 !default;
+$primary-nav-link-color: $primary-navigation-link-color !default;
+$primary-nav-link-font-family: $secondary-font-family !default;
+
+
+/**
+ * 1. provides positioning context for `.primary-nav__content`
+ */
+.primary-nav {
+    display: none;
+    background-color: $primary-nav-bg-color;
+
+    @include respond-to($wide-breakpoint) {
+        display: block;
+        position: relative; /* [1] */
+    }
+}
+
+    .primary-nav__items {
+        @extend %inline-list;
+        display: none;
+
+        @include respond-to($wide-breakpoint) {
+            display: flex;
+            margin: 0 auto $vertical-margin;
+            max-width: $wide-breakpoint;
+            text-align: center;
+            flex: 0 1 auto;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+        .primary-nav__item {
+            margin: 0 $spacing-unit;
+        }
+
+        .primary-nav__item--hover {}
+
+            .primary-nav__link {
+                display: block;
+                padding: $spacing-unit;
+                color: $primary-nav-link-color;
+                font-family: $primary-nav-link-font-family;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            .primary-nav__link--selected {
+                font-weight: bold;
+            }
+
+
+            /**
+                * 1. injected via JavaScript
+                */
+            .primary-nav__content { /* [1] */
+                display: none;
+
+                .primary-nav__item--hover &,
+                .primary-nav__item:hover & {
+                    display: block;
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    left: 0;
+                    background: $primary-nav-content-bg-color;
+                    box-shadow: $primary-nav-content-box-shadow;
+                }
+            }

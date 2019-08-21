@@ -1,0 +1,62 @@
+/*------------------------------------*\
+    #ACCOUNT-MENU
+\*------------------------------------*/
+
+$account-menu-width: 240px !default;
+$account-menu-background-color: $utility-nav-background-color !default;
+$account-menu-box-shadow: 0 2px 5px 0 $black-alpha-15 !default;
+$account-menu-heading-color: $utility-nav-heading-color !default;
+$account-menu-item-list-background-color: $background-color !default;
+$account-menu-offset: 80px !default;
+$account-menu-offset-wide: 100px !default;
+
+
+/**
+ * 1. -200% to prevent account menu being visible if a user 'flicks' the browser up
+ */
+.account-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: index($components, account-menu);
+    padding: ($spacing-unit * 2) ($spacing-unit * 3);
+    width: $account-menu-width;
+    text-align: left;
+    background-color: $account-menu-background-color;
+    box-shadow: $account-menu-box-shadow;
+    opacity: 0;
+    transform: translateY(-200%); /* [1] */
+    transition: opacity $transition-time ease-out;
+
+    @include respond-to($x-wide-breakpoint) {
+        left: 75%;
+    }
+}
+
+.account-menu--open {
+    transform: translateY($account-menu-offset);
+    opacity: 1;
+    transition-timing-function: ease-out;
+
+    @include respond-to($wide-breakpoint) {
+        transform: translateY($account-menu-offset-wide);
+    }
+}
+
+    .account-menu__heading {
+        margin-bottom: $spacing-unit;
+        color: $account-menu-heading-color;
+    }
+
+    .account-menu__items {
+        @extend %list-reset;
+        background-color: $account-menu-item-list-background-color;
+    }
+
+        .account-menu__item {
+            padding: ($spacing-unit * 2) 0;
+        }
+
+        .account-menu__logout-link {}
+
+        .account-menu__locale {}

@@ -1,0 +1,40 @@
+/*------------------------------------*\
+    #POPPINS
+\*------------------------------------*/
+// scss-lint:disable VariableForProperty
+
+/* poppins-light (300) */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    src: font-url('workarea/storefront/poppins/poppins_300.woff2') format('woff2'),
+        font-url('workarea/storefront/poppins/poppins_300.woff') format('woff');
+}
+
+/* poppins_regular (400) */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: font-url('workarea/storefront/poppins/poppins_regular.woff2') format('woff2'),
+        font-url('workarea/storefront/poppins/poppins_regular.woff') format('woff');
+}
+
+/* poppins_medium (500) */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    src: font-url('workarea/storefront/poppins/poppins_500.woff2') format('woff2'),
+        font-url('workarea/storefront/poppins/poppins_500.woff') format('woff');
+}
+
+/* poppins_bold (700) */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    src: font-url('workarea/storefront/poppins/poppins_700.woff2') format('woff2'),
+        font-url('workarea/storefront/poppins/poppins_700.woff') format('woff');
+}

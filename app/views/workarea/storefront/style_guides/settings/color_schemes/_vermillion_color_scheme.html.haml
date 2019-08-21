@@ -1,0 +1,7 @@
+.grid.grid--auto
+  - colors = %w(off-black merlot rose-taupe rusty ginger light-beige beige dark-beige meadow)
+  - colors.each do |color|
+    .grid__cell
+      .color-box
+        .color-box__swatch{ class: "color-box__swatch--#{color}" }
+        .color-box__swatch-name $#{color}

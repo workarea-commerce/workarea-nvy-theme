@@ -1,0 +1,55 @@
+/*------------------------------------*\
+    #INPUT-CHECKBOX
+\*------------------------------------*/
+
+$input-checkbox-size: 16px !default;
+$input-checkbox-color: $input-checkbox-color !default;
+$input-checkbox-border: 1px solid $input-checkbox-border-color !default;
+
+$input-checkbox-fill-color: $input-checkbox-fill-color !default;
+$input-checkbox-box-shadow: 0 0 0 0 $input-checkbox-fill-color inset !default;
+$input-checkbox-box-shadow-checked: 0 0 0 ($input-checkbox-size / 2) $input-checkbox-fill-color inset !default;
+$input-checkbox-easing-function: ease-in !default;
+
+/**
+ * 1. animating box-shadow isn't preferable but it's the best way to acheive this effect
+ */
+input[type='checkbox'] {
+    position: relative;
+    width: $input-checkbox-size;
+    height: $input-checkbox-size;
+    border: $input-checkbox-border;
+    box-shadow: $input-checkbox-box-shadow;
+    transition: box-shadow 0.15s $input-checkbox-easing-function; /* [1] */
+    vertical-align: middle;
+    appearance: none;
+
+    &:after {
+        @include center;
+        display: block;
+        color: $input-checkbox-color;
+        font-size: 13px;
+        text-align: center;
+        content: '✔';
+        opacity: 0;
+        transition: opacity 0.15s $input-checkbox-easing-function;
+    }
+
+    &:checked:after {
+        opacity: 1;
+    }
+
+    &:checked {
+        box-shadow: $input-checkbox-box-shadow-checked;
+    }
+
+    &.visually-hidden {
+        width: 0;
+        height: 0;
+        border: 0;
+
+        &:after {
+            display: none;
+        }
+    }
+}

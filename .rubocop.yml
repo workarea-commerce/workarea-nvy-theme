@@ -1,0 +1,8 @@
+inherit_gem:
+  workarea-ci: rubocop.yml
+
+AllCops:
+  Exclude:
+    - 'test/dummy/**/*'
+    - 'lib/nvy_theme.rb'
+    - 'lib/nvy_theme/**/*'

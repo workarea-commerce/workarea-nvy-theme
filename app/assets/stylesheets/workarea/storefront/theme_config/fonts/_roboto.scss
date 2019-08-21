@@ -1,0 +1,29 @@
+/*------------------------------------*\
+    #ROBOTO
+\*------------------------------------*/
+
+// scss-lint:disable VariableForProperty
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: normal;
+    font-style: normal;
+    src: font-url('workarea/storefront/roboto/roboto_regular_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/roboto/roboto_regular_webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-style: normal;
+    src: font-url('workarea/storefront/roboto/roboto_bold_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/roboto/roboto_bold_webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: normal;
+    font-style: italic;
+    src: font-url('workarea/storefront/roboto/roboto_italic_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/roboto/roboto_italic_webfont.woff') format('woff');
+}

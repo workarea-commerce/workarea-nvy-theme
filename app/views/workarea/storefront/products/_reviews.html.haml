@@ -1,0 +1,22 @@
+- if product.has_reviews?
+  #reviews.reviews
+    %h2.reviews__count= t('workarea.storefront.reviews.reviews', count: product.reviews.length)
+
+    .reviews__header
+      .reviews__write-action= link_to t('workarea.storefront.reviews.write_a_review'), new_product_review_path(product), class: 'button', data: { dialog_button: '' }
+      - if display_purchase_requirement_message
+        %span.reviews__write-purchase-requirement= t('workarea.storefront.reviews.purchase_requirement')
+
+    %ol.reviews__review-group
+      - product.reviews.each do |review|
+        %li.reviews__review{ itemprop: 'review', itemscope: true, itemtype: 'http://schema.org/Review', data: { product_review_section_entry: { rating: review.rating.to_f, createdAt: review.created_at.to_i }.to_json } }
+          = rating_stars(review.rating)
+
+          %h3.reviews__review-title{ itemprop: 'name' }= review.title
+          %p.reviews__review-body{ itemprop: 'reviewBody' }= review.body
+          .reviews__review-meta
+            %p.reviews__review-author{ itemprop: 'author', itemscope: true, itemtype: 'http://schema.org/Person' }
+              %span{ itemprop: 'name' }= review.user_info
+            - if review.verified?
+              %p.reviews__review-verified= t('workarea.storefront.reviews.verified_purchaser')
+            %p.reviews__review-date= local_time(review.created_at, format: :long, itemprop: 'datePublished')

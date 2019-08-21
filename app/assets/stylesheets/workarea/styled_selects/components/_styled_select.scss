@@ -1,0 +1,71 @@
+/*------------------------------------*\
+    #STYLED-SELECT
+\*------------------------------------*/
+
+$select-menu-color: $forms-color !default;
+$select-menu-bg-color: $input-background-color !default;
+$select-menu-border-color: $input-border-color !default;
+$select-menu-focus-border-color: $focus-ring-color !default;
+$select-menu-valid-border-color: $valid-color !default;
+$select-menu-invalid-border-color: $invalid-color !default;
+
+$select-menu-arrow-size: 10px !default;
+$select-menu-arrow-width: $spacing-unit * 5 !default;
+$select-menu-arrow-color: $input-icon-color !default;
+$select-menu-arrow-bg-color: $background-color !default;
+
+
+/**
+ * 1. Positioning context for before pseudo element
+ */
+.styled-select {
+    position: relative; /* [1] */
+
+    &:before {
+        @include center($to: vertical);
+        right: 1px;
+        bottom: 0;
+        padding-top: $spacing-unit / 2;
+        width: $select-menu-arrow-width;
+        color: $select-menu-arrow-color;
+        font-size: $select-menu-arrow-size;
+        text-align: center;
+        background-color: $select-menu-arrow-bg-color;
+        content: '▼';
+        pointer-events: none;
+    }
+
+    /**
+     * 1. Prevent chrome applying yellow background on autofill.
+     */
+    select:-webkit-autofill {
+        box-shadow: 0 0 0 30px $select-menu-arrow-bg-color inset; /* [1] */
+    }
+
+    select {
+        padding: $spacing-unit ($spacing-unit * 2);
+        padding-right: $select-menu-arrow-width;
+        width: 100%;
+        color: $select-menu-color;
+        background-color: $select-menu-bg-color;
+        border: 1px solid $select-menu-border-color;
+        appearance: none;
+
+        &::-ms-expand {
+            display: none;
+        }
+
+        &.jquery-validation-error,
+        .property--invalid & {
+            border-color: $select-menu-invalid-border-color;
+        }
+
+        &.jquery-validation-valid {
+            border-color: $select-menu-valid-border-color;
+        }
+
+        &:focus {
+            border-color: $select-menu-focus-border-color;
+        }
+    }
+}

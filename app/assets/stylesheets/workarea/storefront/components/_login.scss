@@ -1,0 +1,32 @@
+/*------------------------------------*\
+    #LOGIN
+\*------------------------------------*/
+
+$login-section-background-color: $background-color-component !default;
+$login-section-min-height: 500px !default;
+
+
+/**
+ * 1. adds visual separator for adjacent `.breadcrumbs_node`
+ */
+
+.login {}
+
+    .login__section {
+        margin: ($spacing-unit * 2) auto;
+        padding: ($spacing-unit * 5);
+        background-color: $login-section-background-color;
+
+        @include respond-to($medium-breakpoint) {
+            padding: ($spacing-unit * 10);
+            min-height: $login-section-min-height;
+        }
+    }
+
+    .login__section--login {}
+    .login__section--create-account {}
+    .login__section--order-lookup {}
+
+        .login__heading {}
+
+        .login__form {}

@@ -1,0 +1,28 @@
+/*------------------------------------*\
+    #RATING
+\*------------------------------------*/
+
+$rating-fill-color:   $yellow !default;
+$rating-empty-color:  $gray !default;
+$rating-star-size: 16px !default;
+
+
+
+.rating {
+    position: relative;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+
+    .product-summary & {
+        margin: $spacing-unit auto 0;
+    }
+}
+
+    .rating__star {
+        display: inline-block;
+        width:  $rating-star-size;
+        height: $rating-star-size;
+        fill: $rating-fill-color;
+        overflow: hidden;
+    }

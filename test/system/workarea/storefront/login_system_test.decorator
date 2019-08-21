@@ -1,0 +1,94 @@
+require 'test_helper'
+
+module Workarea
+  decorate Storefront::LoginSystemTest, with: :nvy_theme do
+    def test_basic_login
+      visit storefront.login_path
+
+      within '#login_form' do
+        fill_in 'email', with: 'existing-account@workarea.com'
+        fill_in 'password', with: 'W3bl1nc!'
+        click_button t('workarea.storefront.users.login')
+      end
+
+      assert(page.has_content?('Success'))
+
+      page.find('.page-header__account-link').click
+      click_link t('workarea.storefront.users.logout')
+      assert(page.has_content?('Success'))
+
+      visit storefront.users_account_path
+      assert_current_path(storefront.login_path)
+    end
+
+    def test_cart_merging
+      visit storefront.login_path
+
+      within '#login_form' do
+        fill_in 'email', with: 'existing-account@workarea.com'
+        fill_in 'password', with: 'W3bl1nc!'
+        click_button t('workarea.storefront.users.login')
+      end
+
+      visit storefront.product_path(@product_one)
+      click_button t('workarea.storefront.products.add_to_cart')
+
+      within '.ui-dialog' do
+        assert(page.has_content?(@product_one.name))
+        page.find(".ui-dialog-titlebar-close").click
+      end
+
+      page.find('.page-header__account-link').click
+      click_link t('workarea.storefront.users.logout')
+
+      visit storefront.product_path(@product_two)
+      click_button t('workarea.storefront.products.add_to_cart')
+
+      within '.ui-dialog' do
+        assert(page.has_content?(@product_two.name))
+      end
+
+      visit storefront.login_path
+      within '#login_form' do
+        fill_in 'email', with: 'existing-account@workarea.com'
+        fill_in 'password', with: 'W3bl1nc!'
+        click_button t('workarea.storefront.users.login')
+      end
+
+      visit storefront.cart_path
+      assert(page.has_content?('Integration Product 1'))
+      assert(page.has_content?('Integration Product 2'))
+    end
+
+    def test_password_changing
+      visit storefront.login_path
+
+      within '#login_form' do
+        fill_in 'email', with: 'existing-account@workarea.com'
+        fill_in 'password', with: 'W3bl1nc!'
+        click_button t('workarea.storefront.users.login')
+      end
+
+      visit storefront.change_password_path
+
+      within '#change_password_form' do
+        fill_in 'old_password', with: 'W3bl1nc!'
+        fill_in 'password', with: 'N3w_passw0rd!'
+        click_button t('workarea.storefront.users.change_password')
+      end
+
+      assert_current_path(storefront.users_account_path)
+
+      page.find('.page-header__account-link').click
+      click_link t('workarea.storefront.users.logout')
+
+      within '#login_form' do
+        fill_in 'email', with: 'existing-account@workarea.com'
+        fill_in 'password', with: 'N3w_passw0rd!'
+        click_button t('workarea.storefront.users.login')
+      end
+
+      assert_current_path(storefront.users_account_path)
+    end
+  end
+end

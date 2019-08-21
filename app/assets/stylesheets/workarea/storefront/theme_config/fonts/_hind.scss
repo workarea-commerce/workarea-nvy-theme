@@ -1,0 +1,21 @@
+/*------------------------------------*\
+    #HIND
+\*------------------------------------*/
+
+// scss-lint:disable VariableForProperty
+
+@font-face {
+    font-family: 'Hind';
+    font-weight: normal;
+    font-style: normal;
+    src: font-url('workarea/storefront/hind/hind_regular_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/hind/hind_regular_webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Hind';
+    font-weight: bold;
+    font-style: normal;
+    src: font-url('workarea/storefront/hind/hind_bold_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/hind/hind_bold_webfont.woff') format('woff');
+}

@@ -1,0 +1,153 @@
+/*------------------------------------*\
+    #HEADING
+\*------------------------------------*/
+
+$heading-font-family: $secondary-font-family !default;
+
+$heading--background-bg-color: $white-alpha-50 !default;
+
+$heading-1-font-size: 32px !default;
+$heading-1-font-size-wide: 40px !default;
+$heading-1-font-size-content: 52px !default;
+$heading-1-font-size-content-wide: 60px !default;
+
+$heading-2-font-size: 24px !default;
+$heading-2-font-size-wide: 32px !default;
+$heading-2-font-size-content: 38px !default;
+$heading-2-font-size-content-wide: 48px !default;
+
+$heading-3-font-size: 24px !default;
+$heading-3-font-size-wide: 28px !default;
+$heading-3-font-size-content: 32px !default;
+$heading-3-font-size-content-wide: 40px !default;
+
+$heading-4-font-size: 20px !default;
+$heading-4-font-size-wide: 22px !default;
+$heading-4-font-family: $font-family !default;
+
+$heading-5-font-size: 16px !default;
+$heading-5-font-size-wide: 18px !default;
+
+$heading-6-font-size: 14px !default;
+$heading-6-font-size-wide: 15px !default;
+
+
+/**
+ * Defines common heading element styles.
+ * 1. Override user agent styles for headings.
+ * 2. prevent type style inheritance when using .heading class modifiers e.g. h6.heading.heading--4
+ */
+h1, h2, h3, h4, h5, h6,
+%heading,
+.heading {
+    display: block;
+    margin-bottom: $vertical-margin;
+    font-family: $heading-font-family;
+    font-weight: normal; /* [1] */
+    text-transform: none; /* [2] */
+}
+
+.heading--background {
+    padding: $spacing-unit;
+    background-color: $heading--background-bg-color;
+}
+
+/**
+ * Define specific font styles for each heading.
+ */
+h1,
+%heading--1,
+.heading--1 {
+    font-size: $heading-1-font-size;
+    font-weight: bold;
+    letter-spacing: $letter-spacing-large;
+
+    @include respond-to($medium-breakpoint) {
+        font-size: $heading-1-font-size-wide;
+    }
+
+    .content-block & {
+        font-size: $heading-1-font-size-content;
+
+        @include respond-to($medium-breakpoint) {
+            font-size: $heading-1-font-size-content-wide;
+        }
+    }
+}
+
+h2,
+%heading--2,
+.heading--2 {
+    font-size: $heading-2-font-size;
+
+    @include respond-to($medium-breakpoint) {
+        font-size: $heading-2-font-size-wide;
+    }
+
+    .content-block & {
+        font-size: $heading-2-font-size-content;
+
+        @include respond-to($medium-breakpoint) {
+            font-size: $heading-2-font-size-content-wide;
+        }
+    }
+}
+
+h3,
+%heading--3,
+.heading--3 {
+    font-size: $heading-3-font-size;
+    font-weight: bold;
+
+    @include respond-to($medium-breakpoint) {
+        font-size: $heading-3-font-size-wide;
+    }
+
+    .content-block & {
+        font-size: $heading-3-font-size-content;
+
+        @include respond-to($medium-breakpoint) {
+            font-size: $heading-3-font-size-content-wide;
+        }
+    }
+}
+
+h4,
+%heading--4,
+.heading--4 {
+    font-size: $heading-4-font-size;
+    font-style: italic;
+    font-family: $heading-4-font-family;
+
+    @include respond-to($medium-breakpoint) {
+        font-size: $heading-4-font-size-wide;
+    }
+}
+
+h5,
+%heading--5,
+.heading--5 {
+    font-size: $heading-5-font-size;
+    font-weight: bold;
+
+    @include respond-to($medium-breakpoint) {
+        font-size: $heading-5-font-size-wide;
+    }
+}
+
+h6,
+%heading--6,
+.heading--6 {
+    font-size: $heading-6-font-size;
+    letter-spacing: $letter-spacing-extra-large;
+    text-transform: uppercase;
+
+    @include respond-to($medium-breakpoint) {
+        font-size: $heading-6-font-size-wide;
+    }
+}
+
+%heading--upcase,
+.heading--upcase {
+    text-transform: uppercase;
+}

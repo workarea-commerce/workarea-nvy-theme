@@ -1,0 +1,39 @@
+/*------------------------------------*\
+    #TEXT-BUTTON
+\*------------------------------------*/
+
+$text-button-color: $link-color !default;
+$text-button-hover-color: $link-color-hover !default;
+
+
+.text-button {
+    @extend %button-reset;
+    color: $text-button-color;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:focus {
+        color: $text-button-hover-color;
+    }
+
+    &:hover {
+        color: $text-button-hover-color;
+        text-decoration: underline;
+    }
+}
+
+.text-button--block {
+    display: block;
+}
+
+    .text-button__icon {
+        width: 1em;
+        height: 1em;
+        fill: $text-button-color;
+        vertical-align: middle;
+
+        &:hover {
+            color: $text-button-hover-color;
+        }
+    }

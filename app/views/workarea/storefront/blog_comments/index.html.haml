@@ -1,0 +1,31 @@
+#write-comment.blog-entry__section
+
+  %h2.blog-entry__comment-heading= t('workarea.storefront.blogs.write_comment')
+
+  - if !logged_in?
+
+    %p #{t('workarea.storefront.blogs.must_be_logged_in')} #{link_to t('workarea.storefront.users.login'), login_path(return_to: blog_entry_path(@entry))}
+
+  - else
+
+    - if @comment.present? && @comment.errors.present?
+      = render 'workarea/storefront/shared/errors', errors: @comment.errors
+
+    = form_tag blog_entry_comment_path(@entry), method: 'post', class: 'blog-entry__comments-form', id: 'comment-form' do
+
+      - if current_user.public_info.blank?
+        .property
+          = label_tag 'first_name', nil, class: 'property__name' do
+            %span.property__text= t('workarea.storefront.users.first_name')
+          .value= text_field_tag 'first_name', nil, class: 'text-box', required: true
+        .property
+          = label_tag 'last_name', nil, class: 'property__name' do
+            %span.property__text= t('workarea.storefront.users.last_name')
+          .value= text_field_tag 'last_name', nil, class: 'text-box', required: true
+
+      .property
+        = label_tag 'body', nil, class: 'property__name' do
+          %span.property__text= t('workarea.storefront.blogs.comment')
+        .value= text_area_tag 'body', @comment.try(:body), class: 'text-box text-box--full text-box--multi-line', required: true, minlength: 10
+
+      %p= button_tag t('workarea.storefront.blogs.submit_comment'), value: 'submit_comment', class: 'button button--solid'

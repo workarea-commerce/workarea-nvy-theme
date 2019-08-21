@@ -1,0 +1,48 @@
+/*------------------------------------*\
+    #OPTION-BUTTON
+\*------------------------------------*/
+
+$option-button-size: 40px !default;
+$option-button-swatch-size: 32px !default;
+$option-button-color: $button-color !default;
+$option-button-border-color: $border-color !default;
+
+/**
+* 1. Property not supported in IE11, progressive enhancement with fallback to no offset on outline for IE11.
+*/
+.option-button {
+    display: inline-block;
+    position: relative;
+    margin: 0 ($spacing-unit * 2) $spacing-unit 0;
+    width: $option-button-size;
+    height: $option-button-size;
+    color: $option-button-color;
+    line-height: $option-button-size;
+    text-align: center;
+    vertical-align: top;
+
+    & + & {
+        margin-left: $spacing-unit;
+    }
+
+    .ui-dialog & {
+        margin-right: $spacing-unit;
+    }
+}
+
+.option-button--active {
+    font-weight: bold;
+    border: 1px solid $option-button-border-color;
+}
+
+    .option-button__text {}
+
+    .option-button__image {
+        @include center;
+    }
+
+    .option-button__swatch {
+        @include center;
+        width: $option-button-swatch-size;
+        height: $option-button-swatch-size;
+    }

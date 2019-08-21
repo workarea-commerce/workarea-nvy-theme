@@ -1,0 +1,89 @@
+require 'test_helper'
+
+module Workarea
+  decorate Storefront::PaginationSystemTest, with: :nvy_theme do
+    def test_category_pagination
+      category = create_category
+      categorize_products(category)
+
+      visit storefront.category_path(category)
+
+      scroll_to_bottom
+
+      assert(page.has_content?('Product 1'))
+      assert(page.has_content?('Product 2'))
+      assert(page.has_content?('Product 3'))
+      assert(page.has_content?('Product 4'))
+      assert(page.has_content?('Product 5'))
+
+      scroll_to_bottom
+
+      refute(page.has_content?(t('workarea.storefront.pagination.next_page')))
+      click_link t('workarea.storefront.pagination.load_more')
+
+      assert_current_path(storefront.category_path(category))
+      assert(page.has_content?('Product 1'))
+      assert(page.has_content?('Product 2'))
+      assert(page.has_content?('Product 3'))
+      assert(page.has_content?('Product 4'))
+      assert(page.has_content?('Product 5'))
+      assert(page.has_content?('Product 6'))
+
+      refute(page.has_content?(t('workarea.storefront.pagination.load_more')))
+
+      find('a', text: 'Product 6').click
+      page.execute_script("history.back()")
+
+      assert_current_path(storefront.category_path(category))
+
+      wait_for_xhr
+      scroll_to_bottom
+
+      refute(page.has_content?(t('workarea.storefront.pagination.load_more')))
+
+      assert_match(/PROD1.*PROD2.*PROD3.*PROD4.*PROD5.*PROD6/m, page.html)
+    end
+
+    def test_search_pagination
+      visit storefront.search_path(q: 'Product')
+
+      scroll_to_bottom
+
+      assert(page.has_content?('Product 1'))
+      assert(page.has_content?('Product 2'))
+      assert(page.has_content?('Product 3'))
+      assert(page.has_content?('Product 4'))
+      scroll_to_bottom
+      assert(page.has_content?('Product 5'))
+
+      refute(page.has_content?(t('workarea.storefront.pagination.next_page')))
+      click_link t('workarea.storefront.pagination.load_more')
+
+      assert_current_path(storefront.search_path(q: 'Product'))
+      assert(page.has_content?('Product 1'))
+      assert(page.has_content?('Product 2'))
+      assert(page.has_content?('Product 3'))
+      assert(page.has_content?('Product 4'))
+      assert(page.has_content?('Product 5'))
+      assert(page.has_content?('Product 6'))
+
+      refute(page.has_content?(t('workarea.storefront.pagination.load_more')))
+
+      find('a', text: 'Product 6').click
+      page.execute_script("history.back()")
+
+      assert_current_path(storefront.search_path(q: 'Product'))
+
+      wait_for_xhr
+
+      refute(page.has_content?(t('workarea.storefront.pagination.load_more')))
+
+      assert(page.has_content?('Product 1'))
+      assert(page.has_content?('Product 2'))
+      assert(page.has_content?('Product 3'))
+      assert(page.has_content?('Product 4'))
+      assert(page.has_content?('Product 5'))
+      assert(page.has_content?('Product 6'))
+    end
+  end
+end

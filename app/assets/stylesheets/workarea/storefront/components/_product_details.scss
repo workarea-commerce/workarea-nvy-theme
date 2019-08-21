@@ -1,0 +1,82 @@
+/*------------------------------------*\
+    #PRODUCT-DETAILS
+\*------------------------------------*/
+
+$product-details-info-max-width: 480px !default;
+$product-details-id-color: $product-id-color !default;
+
+$product-details-quantity-width: 62px !default;
+
+$product-details-add-to-cart-margin: ($spacing-unit * 6) !default;
+$product-details-add-to-cart-margin-medium: ($spacing-unit * 7) !default;
+
+
+/**
+ * 1. within a jQuery Dialog, set width since there is no
+ *    .product-details-container
+ */
+
+.product-details {
+    .ui-dialog & { /* [1] */
+        max-width: $dialog-content-max-width;
+    }
+}
+
+.product-details--generic {}
+
+    .product-details__info {
+        max-width: $product-details-info-max-width;
+
+        @include respond-to($medium-breakpoint) {
+            padding-right: ($spacing-unit * 5);
+        }
+    }
+
+        .product-details__name {
+            line-height: 1;
+        }
+
+            .product-details__heading {
+                .ui-dialog & {
+                    text-align: left;
+                }
+            }
+
+            .product-details__id {
+                color: $product-details-id-color;
+            }
+
+
+        .product-details__description {}
+
+
+        .product-details__add-to-cart-form {
+            margin-bottom: $product-details-add-to-cart-margin;
+
+            @include respond-to($medium-breakpoint) {
+                margin-bottom: $product-details-add-to-cart-margin-medium;
+            }
+        }
+
+            .product-details__quantity {
+                display: inline-block;
+                margin-right: $spacing-unit;
+                width: $product-details-quantity-width;
+            }
+
+            .product-details__add-to-cart-action {
+                display: inline-block;
+                width: calc(100% - (#{$product-details-quantity-width} + #{$spacing-unit * 2}));
+            }
+
+            .product-details__unavailable {}
+
+            .product-details__inventory-status {}
+
+        .product-details__full-details {
+            display: none;
+
+            .ui-dialog & {
+                display: block;
+            }
+        }

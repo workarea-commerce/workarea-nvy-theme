@@ -1,0 +1,37 @@
+/*------------------------------------*\
+    #SECONDARY-NAV
+\*------------------------------------*/
+
+$secondary-nav-heading-color: $aside-heading-color !default;
+
+.secondary-nav {
+    margin-top: $spacing-unit * 3;
+}
+
+    .secondary-nav__heading {
+        @extend %heading;
+        @extend %heading--5;
+        @extend %heading--upcase;
+        color: $secondary-nav-heading-color;
+    }
+
+    .secondary-nav__links {
+        @extend %list-reset;
+        margin-bottom: $vertical-margin;
+    }
+
+    .secondary-nav__item {}
+
+    .secondary-nav__item--has-children {}
+
+        .secondary-nav__link {
+            display: block;
+            padding: $spacing-unit;
+        }
+
+        .secondary-nav__link--selected {
+            font-weight: bold;
+        }
+
+
+        .secondary-nav__children {}

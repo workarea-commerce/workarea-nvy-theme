@@ -1,0 +1,67 @@
+.grid
+  .grid__cell.grid__cell--60-at-medium
+    = render 'workarea/storefront/products/media', product: product
+
+  .grid__cell.grid__cell--40-at-medium
+    .product-details__info
+      .product-details__name
+        %h1.product-details__heading{ itemprop: 'name' }= product.name
+
+      .product-prices.product-prices--details{ itemprop: 'offers', itemscope: true, itemtype: 'http://schema.org/Offer' }
+        = render 'workarea/storefront/products/pricing', product: product
+
+      - if product.description.present?
+        .product-details__description
+          %p= truncated_product_description(product, t('workarea.storefront.products.read_more'))
+
+      %p.product-details__id
+        %span{ itemprop: 'productID' }= product.id
+
+      = form_tag cart_items_path, method: 'post', class: 'product-details__add-to-cart-form', data: { dialog_form: { dialogOptions: { closeAll: true, initModules: true } }, analytics: add_to_cart_analytics_data(product).to_json } do
+        = hidden_field_tag :product_id, product.id, id: dom_id(product, 'product_id')
+        = hidden_field_tag :via, params[:via], id: dom_id(product, 'via')
+
+        - if product.sku_options.one?
+          = hidden_field_tag :sku, product.sku_options.first.second
+
+        - else
+          .property
+            = label_tag :sku, nil, class: 'property__name', for: "sku_#{dom_id(product)}" do
+              %span.property__text= t('workarea.storefront.products.select_options')
+            .value
+              = select_tag :sku, options_for_select(product.sku_options, params[:sku]), required: true, id: "sku_#{dom_id(product)}", data: { product_details_sku_select: product.slug }
+
+          - if product.current_sku.present?
+            %p.product-details__inventory-status= product.inventory_status
+
+        = hidden_field_tag :quantity, 1, id: "quantity#{dom_id(product)}"
+
+        .message.message--info
+          %p.message__type
+            %span.message__icon= t('workarea.storefront.messages.info')
+          %p.message__text= t('workarea.storefront.gift_cards.email_to_recipient')
+
+        .property
+          = label_tag :email, nil, class: "property__name", for: "email_#{dom_id(product)}" do
+            %span.property__text= t('workarea.storefront.gift_cards.recipients_email')
+          .value= email_field_tag :email, params[:email], class: 'text-box text-box--full', required: true, id: "email_#{dom_id(product)}"
+        .property
+          = label_tag :from, nil, class: "property__name", for: "from_#{dom_id(product)}" do
+            %span.property__text= t('workarea.storefront.gift_cards.senders_email')
+            %span.property__requirement.property__requirement--optional= t('workarea.storefront.forms.optional')
+          .value= text_field_tag :from, params[:from], class: 'text-box text-box--full', id: "from_#{dom_id(product)}", maxlength: 100
+        .property
+          = label_tag :message, nil, class: "property__name", for: "message_#{dom_id(product)}" do
+            %span.property__text= t('workarea.storefront.gift_cards.message_to_recipient')
+            %span.property__requirement.property__requirement--optional= t('workarea.storefront.forms.optional')
+          .value= text_area_tag :message, params[:message], class: 'text-box text-box--multi-line text-box--full', id: "message_#{dom_id(product)}", maxlength: 500
+
+        - if product.purchasable?
+          %p.product-details__add-to-cart-action= button_tag t('workarea.storefront.products.add_to_cart'), value: 'add_to_cart', class: 'button button--solid button--large button--full'
+
+        - else
+          %p.product-details__unavailable= t('workarea.storefront.products.unavailable')
+
+      = append_partials('storefront.product_details', product: product)
+
+      %p.product-details__full-details=link_to t('workarea.storefront.products.view_full_details'), product_path(product, color: params[:color]), class: 'text-button', itemprop: 'url'

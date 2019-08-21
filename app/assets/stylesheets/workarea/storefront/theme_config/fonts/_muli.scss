@@ -1,0 +1,37 @@
+/*------------------------------------*\
+    #MULI
+\*------------------------------------*/
+
+// scss-lint:disable VariableForProperty
+
+@font-face {
+    font-family: 'Muli';
+    font-weight: normal;
+    font-style: normal;
+    src: font-url('workarea/storefront/muli/muli_regular_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/muli/muli_regular_webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Muli';
+    font-weight: normal;
+    font-style: italic;
+    src: font-url('workarea/storefront/muli/muli_italic_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/muli/muli_italic_webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Muli';
+    font-weight: bold;
+    font-style: normal;
+    src: font-url('workarea/storefront/muli/muli_bold_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/muli/muli_bold_webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Muli';
+    font-weight: bold;
+    font-style: italic;
+    src: font-url('workarea/storefront/muli/muli_bolditalic_webfont.woff2') format('woff2'),
+         font-url('workarea/storefront/muli/muli_bolditalic_webfont.woff') format('woff');
+}

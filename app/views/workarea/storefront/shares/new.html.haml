@@ -1,0 +1,50 @@
+- @title = t('workarea.storefront.shares.share_by_email')
+
+.view
+  %h1= t('workarea.storefront.shares.share_by_email')
+  - if @share.errors.any?
+    - @share.errors.full_messages.each do |message|
+      = render_message 'error', message, data: { analytics: validation_error_analytics_data('share').to_json }
+
+  = form_tag shares_path, method: 'post', id: 'email_friend_form' do
+    = hidden_field_tag 'title', @share.title
+    = hidden_field_tag 'url', @share.url
+
+    %fieldset
+      %legend
+        %span.heading.heading--2= t('workarea.storefront.shares.from')
+      .property-group
+        .property
+          = label_tag 'from_name', nil, class: 'property__name' do
+            %span.property__text= t('workarea.storefront.shares.name')
+            %span.property__requirement.property__requirement--optional= t('workarea.storefront.forms.optional')
+          .value= text_field_tag 'from_name', @share.from_name, class: 'text-box', placeholder: t('workarea.storefront.shares.from_name_placeholder')
+        .property
+          = label_tag 'from_email', nil, class: 'property__name' do
+            %span.property__text= t('workarea.storefront.shares.email')
+          .value= email_field_tag 'from_email', @share.from_email, class: 'text-box', required: true, autocapitalize: 'off', autocorrect: 'off', placeholder: t('workarea.storefront.shares.from_email_placeholder')
+
+    %fieldset
+      %legend
+        %span.heading.heading--2= t('workarea.storefront.shares.to')
+      .property-group
+        .property
+          = label_tag 'to_name', nil, class: 'property__name' do
+            %span.property__text= t('workarea.storefront.shares.name')
+            %span.property__requirement.property__requirement--optional= t('workarea.storefront.forms.optional')
+          .value= text_field_tag 'to_name', @share.to_name, class: 'text-box', placeholder: t('workarea.storefront.shares.to_name_placeholder')
+        .property
+          = label_tag 'to_email', nil, class: 'property__name' do
+            %span.property__text= t('workarea.storefront.shares.email')
+          .value= email_field_tag 'to_email', @share.to_email, class: 'text-box', required: true, autocapitalize: 'off', autocorrect: 'off', placeholder: t('workarea.storefront.shares.to_email_placeholder')
+    .property
+      = label_tag 'message', nil, class: 'property__name' do
+        %span.property__text= t('workarea.storefront.shares.message')
+        %span.property__requirement.property__requirement--optional= t('workarea.storefront.forms.optional')
+      .value= text_area_tag 'message', @share.message, class: 'text-box text-box--multi-line text-box--wide', placeholder: t('workarea.storefront.shares.message_placeholder'), maxlength: Workarea.config.max_email_share_message_length
+
+    .property= recaptcha_tags
+
+    .grid.grid--auto
+      %p.grid__cell= button_tag t('workarea.storefront.forms.send'), value: 'email_friend', class: 'button'
+      %p.grid__cell= link_to t('workarea.storefront.forms.cancel'), @share.url, class: 'text-button', data: { dialog_close_button: '' }

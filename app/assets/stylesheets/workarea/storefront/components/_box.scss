@@ -1,0 +1,44 @@
+/*------------------------------------*\
+    #BOX
+\*------------------------------------*/
+
+$box-background-color: $background-color-component !default;
+
+$box-padding: ($spacing-unit * 3) ($spacing-unit * 3) 0 !default;
+
+$box-heading-font-size: 18px !default;
+$box-heading-font-size-wide: 20px !default;
+
+
+.box {
+    margin-bottom: $spacing-unit * 2;
+    background-color: $box-background-color;
+}
+
+
+    .box__header {
+        @extend %clearfix;
+        padding: $box-padding;
+    }
+
+        /**
+         * 1. approximate the height of a button
+         */
+        .box__heading {
+            margin-bottom: 0;
+            font-size: $box-heading-font-size;
+            line-height: 1.7; /* [1] */
+
+            @include respond-to($wide-breakpoint) {
+                font-size: $box-heading-font-size-wide;
+            }
+        }
+
+        .box__action {
+            float: right;
+        }
+
+
+    .box__body {
+        padding: ($spacing-unit * 2) ($spacing-unit * 3);
+    }

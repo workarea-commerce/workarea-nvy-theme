@@ -1,0 +1,15 @@
+.grid.grid--auto
+  - colors = %w(white lightest-gray light-gray gray dark-gray black)
+  - colors.each do |color|
+    .grid__cell
+      .color-box
+        .color-box__swatch{ class: "color-box__swatch--#{color}" }
+        .color-box__swatch-name $#{color}
+
+.grid.grid--auto
+  - colors = %w(denim denim-wash cyan muted-blue)
+  - colors.each do |color|
+    .grid__cell
+      .color-box
+        .color-box__swatch{ class: "color-box__swatch--#{color}" }
+        .color-box__swatch-name $#{color}

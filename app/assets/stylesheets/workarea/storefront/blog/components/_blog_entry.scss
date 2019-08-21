@@ -1,0 +1,139 @@
+/*------------------------------------*\
+    #BLOG-ENTRY
+\*------------------------------------*/
+
+$blog-entry-metadata-font: $secondary-font-family !default;
+$blog-entry-comment-border-color: $blog-comment-border-color !default;
+
+
+.blog-entry {}
+
+    .blog-entry__label {
+        display: inline-block;
+        margin: 0 ($spacing-unit / 2) 0 0;
+    }
+
+    .blog-entry__title {}
+
+    .blog-entry__author {
+        display: inline-block;
+        margin: 0 $spacing-unit 0 0;
+        font-family: $blog-entry-metadata-font;
+        font-weight: bold;
+    }
+
+    .blog-entry__datetime {
+        display: inline-block;
+        font-family: $blog-entry-metadata-font;
+    }
+
+    .blog-entry__comment-count {
+        display: inline-block;
+        margin: 0 0 0 $spacing-unit;
+        font-family: $blog-entry-metadata-font;
+    }
+
+    .blog-entry__tags {
+        margin-bottom: $vertical-margin;
+        font-family: $blog-entry-metadata-font;
+    }
+
+        .blog-entry__tags-list {
+            @extend %inline-list;
+            display: inline-block;
+        }
+
+            .blog-entry__tags-list-item {
+                & + & {
+                    margin: 0 0 0 ($spacing-unit / 2);
+                }
+            }
+
+    .blog-entry__body {
+        margin-bottom: $vertical-margin;
+    }
+
+    .blog-entry__share {
+        margin-bottom: $vertical-margin;
+    }
+
+        .blog-entry__share-heading {}
+
+    /**
+     * Comments
+     *
+     * 1. Roughly matches height of write-comment-link for vertical alginment
+     */
+
+    .blog-entry__comments {}
+
+        .blog-entry__section {}
+
+        .blog-entry__comments-header {
+            @extend %clearfix;
+            text-align: center;
+
+            @include respond-to($medium-breakpoint) {
+                text-align: left;
+            }
+        }
+
+
+            .blog-entry__comments-heading {
+                @extend %heading;
+                @extend %heading--5;
+                line-height: 1.9; /* [1] */
+
+                @include respond-to($medium-breakpoint) {
+                    margin-bottom: 0;
+                    float: left;
+                }
+            }
+
+            .blog-entry__write-comment-link {
+                @include respond-to($medium-breakpoint) {
+                    margin-bottom: 0;
+                    float: right;
+                }
+            }
+
+        .blog-entry__comment-group {
+            @extend %list-reset;
+        }
+
+            .blog-entry__comment {
+                padding: ($spacing-unit * 2) $spacing-unit;
+
+                @include respond-to($medium-breakpoint) {
+                    padding: ($spacing-unit * 4) ($spacing-unit * 2);
+                }
+
+                & + & {
+                    border-top: 1px solid $blog-entry-comment-border-color;
+                }
+            }
+
+                .blog-entry__comment-item {
+                    margin: 0 0 ($spacing-unit / 2);
+                }
+
+                .blog-entry__comment-item--author {
+                    display: inline-block;
+                    margin-right: 1em;
+                    font-weight: bold;
+                }
+
+                .blog-entry__comment-item--datetime {
+                    display: inline-block;
+                }
+
+                .blog-entry__comment-item--body {
+                    margin: ($spacing-unit * 2) 0 0;
+                }
+
+        .blog-entry__comments-form {}
+
+            .blog-entry__comment-heading {
+                @extend %heading;
+                @extend %heading--5;
+            }

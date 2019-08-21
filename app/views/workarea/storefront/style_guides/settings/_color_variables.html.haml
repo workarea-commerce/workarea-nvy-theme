@@ -1,0 +1,79 @@
+#color-variables.style-guide__subsection
+
+  %h3= link_to_style_guide('settings', 'color_variables')
+
+  %h5 Base colors
+  .grid.grid--auto
+    - colors = %w(red green blue yellow black white black-alpha-15 black-alpha-50 white-alpha-50 transparent)
+    - colors.each do |color|
+      .grid__cell
+        .color-box
+          .color-box__swatch{ class: "style-guide__color-swatch--#{color}" }
+          .color-box__swatch-name $#{color}
+  %br
+
+  %h4 Brand colors
+
+  = render "workarea/storefront/style_guides/settings/color_schemes/#{Workarea.config.theme[:color_scheme].downcase}_color_scheme"
+
+  %h4 Functional Color variables - these should be used in the storefront
+  %br
+
+  -# %h5 Primary colors
+  -# .grid.grid--auto
+  -#   - colors = %w(primary-color primary-color-light primary-color-dark)
+  -#   - colors.each do |color|
+  -#     .grid__cell
+  -#       .color-box
+  -#         .color-box__swatch{ class: "color-box__swatch--#{color}" }
+  -#         .color-box__swatch-name $#{color}
+  -# %br
+
+  -# %h5 Background colors
+  -# .grid.grid--auto
+  -#   - colors = %w(background-color background-color-component background-secondary-color)
+  -#   - colors.each do |color|
+  -#     .grid__cell
+  -#       .color-box
+  -#         .color-box__swatch{ class: "color-box__swatch--#{color}" }
+  -#         .color-box__swatch-name $#{color}
+  -# %br
+
+  -# %h5 Text colors
+  -# .grid.grid--auto
+  -#   - colors = %w(font-color heading-color product-name-color)
+  -#   - colors.each do |color|
+  -#     .grid__cell
+  -#       .color-box
+  -#         .color-box__swatch{ class: "color-box__swatch--#{color}" }
+  -#         .color-box__swatch-name $#{color}
+  -# %br
+
+  -# %h5 Input colors
+  -# .grid.grid--auto
+  -#   - colors = %w(input-color input-background-color input-secondary-color input-secondary-bg-color)
+  -#   - colors.each do |color|
+  -#     .grid__cell
+  -#       .color-box
+  -#         .color-box__swatch{ class: "color-box__swatch--#{color}" }
+  -#         .color-box__swatch-name $#{color}
+  -# %br
+
+  -# %h5 Header + Navigation colors
+  -# .grid.grid--auto
+  -#   - colors = %w(header-icon-color utility-nav-background-color primary-nav-links primary-nav-dropdown-links mobile-nav-links)
+  -#   - colors.each do |color|
+  -#     .grid__cell
+  -#       .color-box
+  -#         .color-box__swatch{ class: "color-box__swatch--#{color}" }
+  -#         .color-box__swatch-name $#{color}
+  -# %br
+
+  -# %h5 Other colors
+  -# .grid.grid--auto
+  -#   - colors = %w(border-color highlight-color overlay-shadow-color focus-ring-color)
+  -#   - colors.each do |color|
+  -#     .grid__cell
+  -#       .color-box
+  -#         .color-box__swatch{ class: "color-box__swatch--#{color}" }
+  -#         .color-box__swatch-name $#{color}

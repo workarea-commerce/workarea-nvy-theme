@@ -1,0 +1,15 @@
+#fonts.style-guide__subsection
+
+  %h3= link_to_style_guide('typography', 'fonts')
+
+  %p These are the fonts available to the front-end.
+
+  %p Primary font, used site wide:
+  .style-guide__example-block
+    %p{ style: "font-family: #{Workarea.config.theme[:font_stacks][Workarea.config.theme[:primary_font_family].to_sym]};" }
+      Primary Font: #{Workarea.config.theme[:primary_font_family]}
+
+  %p Secondary font, used for headings, buttons etc.:
+  .style-guide__example-block
+    %p{ style: "font-family: #{Workarea.config.theme[:font_stacks][Workarea.config.theme[:secondary_font_family].to_sym]};" }
+      Secondary Font: #{Workarea.config.theme[:secondary_font_family]}

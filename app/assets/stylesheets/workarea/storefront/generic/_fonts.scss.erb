@@ -1,0 +1,11 @@
+/*------------------------------------*\
+    #FONTS
+\*------------------------------------*/
+
+// scss-lint:disable VariableForProperty
+
+<% primary_font_face_path = "\'workarea/storefront/theme_config/fonts/#{Workarea.config.theme[:primary_font_family].downcase}\';" %>
+<% secondary_font_face_path = "\'workarea/storefront/theme_config/fonts/#{Workarea.config.theme[:secondary_font_family].downcase}\';" %>
+
+<%= "@import #{primary_font_face_path}" %>
+<%= "@import #{secondary_font_face_path}" %>

@@ -1,0 +1,24 @@
+/*------------------------------------*\
+    #SWATCH-FACET
+\*------------------------------------*/
+
+/**
+ * Each `.swatch-facet` also receives an ID modifier class, in order to offer
+ * more granular control over the component, if needed. Since this is a
+ * dynamically generated value, they are not listed here.
+ */
+
+$swatch-facet-height: 20px !default;
+$swatch-facet-width:  20px !default;
+
+.swatch-facet {
+    display: inline-block;
+    width: $swatch-facet-width;
+    height: $swatch-facet-height;
+    text-decoration: none;
+    vertical-align: bottom;
+}
+
+.swatch-facet--hex {}
+.swatch-facet--image {}
+.swatch-facet--empty {}

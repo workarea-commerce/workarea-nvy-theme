@@ -1,0 +1,30 @@
+/*------------------------------------*\
+    #COLOR-BOX
+\*------------------------------------*/
+
+$color-box-size: 100px !default;
+$color-box-outline: 1px solid $black !default;
+
+
+.color-box {
+    @extend %style-guide-bg-grid;
+    display: block;
+    width: $color-box-size;
+}
+
+    .color-box__swatch {
+        width: $color-box-size;
+        height: $color-box-size;
+        outline: $color-box-outline;
+    }
+
+    // Generic
+    .color-box__swatch--primary-color { background: $primary-color; }
+    .color-box__swatch--primary-color-dark { background: $primary-color-dark; }
+
+    .color-box__swatch--background-color { background: $background-color; }
+    .color-box__swatch--background-color-component { background: $background-color-component; }
+
+    .color-box__swatch--border-color { background: $border-color; }
+    .color-box__swatch--highlight-color { background: $highlight-color; }
+    .color-box__swatch--overlay-shadow-color { background: $overlay-shadow-color; }

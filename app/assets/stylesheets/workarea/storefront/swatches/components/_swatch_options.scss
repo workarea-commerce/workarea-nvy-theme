@@ -1,0 +1,63 @@
+/*------------------------------------*\
+    #SWATCH-OPTIONS
+\*------------------------------------*/
+
+$swatch-options-outline: 1px solid $light-gray !default;
+$swatch-options-selected-outline:  1px solid $product-swatch-selected-outline-color !default;
+$swatch-options-swatch-size: 36px !default;
+$swatch-options-small-swatch-size: 24px !default;
+
+
+/**
+* 1. Property not supported in IE11, progressive enhancement with fallback to no offset on outline for IE11.
+* 2. Do not allow swatch names to overflow the button when a swatch color is undefined.
+*/
+.swatch-options {}
+
+.swatch-options--small {}
+
+    .swatch-options__label {
+        margin: 0;
+    }
+
+    .swatch-options__group {
+        @extend %inline-list;
+    }
+
+        .swatch-options__swatch {
+            position: relative;
+            margin: 0 0 $spacing-unit;
+            width: $swatch-options-swatch-size;
+            height: $swatch-options-swatch-size;
+            outline: $swatch-options-outline;
+
+            & + & {
+                margin-left: $spacing-unit * 2;
+            }
+
+            .swatch-options--small & {
+                margin-top: $spacing-unit;
+                margin-bottom: 0;
+                width: $swatch-options-small-swatch-size;
+                height: $swatch-options-small-swatch-size;
+            }
+        }
+
+        .swatch-options__swatch--selected {
+            outline: $swatch-options-selected-outline;
+            outline-offset: 4px; /* [1] */
+        }
+
+            .swatch-options__swatch-button,
+            .swatch-options__swatch-button-image,
+            .swatch-options__swatch-button-text {
+                display: block;
+                position: absolute;
+                top:    0;
+                right:  0;
+                bottom: 0;
+                left:   0;
+                overflow: hidden; /* [2] */
+            }
+
+            .swatch-options__swatch-name {}

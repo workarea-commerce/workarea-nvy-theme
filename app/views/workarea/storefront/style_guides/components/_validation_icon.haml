@@ -1,0 +1,21 @@
+#validation-icon.style-guide__subsection
+
+  %h3= link_to_style_guide('components', 'validation-icon')
+
+  %p An icon which responds to validation state within a form field
+
+  .style-guide__example-block
+    .value
+      = text_field_tag 'validation_icon_field', nil, class: 'text-box'
+      = inline_svg('workarea/storefront/icons/validation_icon.svg', class: 'value__icon')
+
+  .style-guide__example-block
+    .value
+      = text_field_tag 'validation_icon_field_invalid', nil, class: 'value__error text-box'
+      = inline_svg('workarea/storefront/icons/validation_icon.svg', class: 'value__icon')
+      %span.value__error Error Message Text
+
+  .style-guide__example-block
+    .value
+      = text_field_tag 'validation_icon_field_valid', 'Value', class: 'text-box text-box--valid', required: true
+      = inline_svg('workarea/storefront/icons/validation_icon.svg', class: 'value__icon')

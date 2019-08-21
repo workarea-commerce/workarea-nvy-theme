@@ -1,0 +1,17 @@
+/*------------------------------------*\
+    #OPTION-BUTTON
+\*------------------------------------*/
+
+/**
+ * Extend the `.option-button` class from Workarea to include a swatch option.
+ *
+ * 1. These dimensions match the :small_thumb processor as configured out of the
+ *    box
+ */
+$option-button-swatch-height: 32px !default; /* [1] */
+$option-button-swatch-width: 32px !default; /* [1] */
+
+.option-button__swatch {
+    width: $option-button-swatch-width;
+    height: $option-button-swatch-height;
+}

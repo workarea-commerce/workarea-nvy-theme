@@ -1,0 +1,131 @@
+require 'test_helper'
+
+module Workarea
+  decorate Storefront::CategoriesSystemTest, with: :nvy_theme do
+    decorated do
+      setup :capybara_settings
+      teardown :capybara_reset
+    end
+
+    def capybara_settings
+      Capybara.default_normalize_ws = true
+    end
+
+    def capybara_reset
+      Capybara.default_normalize_ws = false
+    end
+
+    def test_basic_category_setup
+      category = create_category
+      categorize_products(category)
+
+      visit storefront.category_path(category)
+
+      assert(page.has_content?('Integration Product 1'))
+      assert(page.has_content?('Integration Product 2'))
+      assert(page.has_content?('$10.00'))
+      assert(page.has_content?('$5.00'))
+      # Decorated to remove parenthesis from filter link text
+      assert(page.has_content?('Medium 3'))
+      assert(page.has_content?('Small 2'))
+    end
+
+    def test_filtering_products
+      category = create_category
+      categorize_products(category)
+
+      visit storefront.category_path(category)
+
+      Capybara.match = :first
+      # Decorated to remove parenthesis from filter link text
+      click_link '$10.00 - $19.99 1'
+
+      assert(page.has_content?('Integration Product 1'))
+      assert(page.has_no_content?('Integration Product 2'))
+
+      click_link "$10.00 - $19.99 #{t('workarea.storefront.products.remove_filter')}"
+
+      assert(page.has_content?('Integration Product 1'))
+      assert(page.has_content?('Integration Product 2'))
+
+      click_link 'Green 1'
+
+      assert(page.has_content?('Integration Product 1'))
+      assert(page.has_no_content?('Integration Product 2'))
+
+      click_link "Green #{t('workarea.storefront.products.remove_filter')}"
+
+      assert(page.has_content?('Integration Product 1'))
+      assert(page.has_content?('Integration Product 2'))
+
+      # Mobile Filters Nav
+      resize_window_to('small')
+      visit storefront.category_path(category)
+
+      find('[data-mobile-filter-button]').click
+      assert(page.has_selector?('.mobile-filters-nav', visible: true))
+
+      within '.mobile-filters-nav' do
+        # Decorated to remove parenthesis from filter link text
+        assert(page.has_content?('$10.00 - $19.99 1'))
+      end
+
+      page.execute_script("$('body').trigger('click');")
+      assert(page.has_selector?('.mobile-filters-nav', visible: false))
+
+      find('[data-mobile-filter-button]').click
+      assert(page.has_selector?('.mobile-filters-nav', visible: true))
+
+      within '.mobile-filters-nav' do
+        click_button t('workarea.storefront.products.filter_nav_close_button')
+      end
+
+      assert(page.has_selector?('.mobile-filters-nav', visible: false))
+    end
+
+    def test_filtering_products_and_sorting
+      category = create_category
+      categorize_products(category)
+
+      visit storefront.category_path(category)
+
+      Capybara.match = :first
+      # Decorated to remove parenthesis from filter link text
+      click_link '$10.00 - $19.99 1'
+
+      assert(page.has_content?('Integration Product 1'))
+      assert(page.has_no_content?('Integration Product 2'))
+
+      select(t('workarea.sorts.price_asc'), from: 'sort_top')
+
+      assert(page.has_content?('Integration Product 1'))
+      assert(page.has_no_content?('Integration Product 2'))
+    end
+
+    def test_custom_filters
+      category = create_category
+      categorize_products(category)
+
+      visit storefront.category_path(category)
+
+      assert(page.has_content?('Size'))
+      # Decorated to remove parenthesis from filter link text
+      assert(page.has_content?('Medium 3'))
+
+      # Decorated to remove parenthesis from filter link text
+      assert(page.has_content?('$10.00 - $19.99 1'))
+
+      category.terms_facets = ['Color']
+      category.range_facets = { 'price' => [{ 'to' => 10 }, { 'from' => 10 }] }
+      category.save!
+
+      visit storefront.category_path(category)
+
+      assert(page.has_no_content?('Size'))
+      # Decorated to remove parenthesis from filter link text
+      assert(page.has_no_content?('Medium 3'))
+      assert(page.has_content?('Under $10.00 2'))
+      assert(page.has_content?('Over $10.00 1'))
+    end
+  end
+end

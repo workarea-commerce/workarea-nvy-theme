@@ -1,0 +1,29 @@
+/*------------------------------------*\
+    #VALIDATION-ICON
+\*------------------------------------*/
+
+$validation-icon-color-valid: $valid-color !default;
+$validation-icon-color-invalid: $invalid-color !default;
+
+
+.validation-icon {}
+
+    .validation-icon__valid {
+        display: none;
+
+        .value--valid &,
+        .text-box--valid ~ .validation-icon & {
+            display: inline-block;
+            fill: $validation-icon-color-valid;
+        }
+    }
+
+    .validation-icon__invalid {
+        display: none;
+
+        .text-box--invalid ~ .validation-icon &,
+        .value__error ~ .validation-icon & {
+            display: inline-block;
+            fill: $validation-icon-color-invalid;
+        }
+    }

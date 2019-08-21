@@ -1,0 +1,22 @@
+- if product.has_reviews?
+  .reviews-aggregate{ itemprop: 'aggregateRating', itemscope: true, itemtype: 'http://schema.org/AggregateRating' }
+    = link_to "#{product_path(product, product.browse_link_options)}#reviews", data: { scroll_to_button: '' }, class: 'reviews-aggregate__rating-link' do
+      = rating_stars(product.average_rating, aggregate: true)
+
+    = link_to "#{product_path(product, product.browse_link_options)}#reviews", data: { scroll_to_button: '' } do
+      %span.reviews-aggregate__count
+        %span.reviews-aggregate__read= t('workarea.storefront.reviews.read_reviews')
+        = surround '(', ')' do
+          %span{ itemprop: 'reviewCount' }= product.total_reviews
+
+    = link_to t('workarea.storefront.reviews.write_a_review'), new_product_review_path(product), class: 'reviews-aggregate__write-action', data: { dialog_button: '' }
+    - if display_purchase_requirement_message
+      %span.write-review__purchase-requirement= t('workarea.storefront.reviews.purchase_requirement')
+
+- else
+  .reviews-aggregate
+    %p.reviews-aggregate__count= t('workarea.storefront.reviews.reviews', count: 0)
+    = link_to t('workarea.storefront.reviews.write_a_review'), new_product_review_path(product), class: 'reviews-aggregate__write-action', data: { dialog_button: '' }
+    - if display_purchase_requirement_message
+      %p.write-review__purchase-requirement
+        = t('workarea.storefront.reviews.purchase_requirement')

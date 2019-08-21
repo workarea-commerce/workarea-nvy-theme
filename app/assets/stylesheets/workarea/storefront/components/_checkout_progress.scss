@@ -1,0 +1,102 @@
+/*------------------------------------*\
+    #CHECKOUT-PROGRESS
+\*------------------------------------*/
+
+$checkout-progress-color: $checkout-progress-color !default;
+$checkout-progress-active-color: $checkout-progress-active-color !default;
+$checkout-progress-completed-color: $checkout-progress-completed-color !default;
+$checkout-progress-font: $secondary-font-family !default;
+
+$checkout-progress-step-font-size: 10px !default;
+$checkout-progress-step-font-size-wide: 12px !default;
+
+$checkout-progress-step-number-size: $spacing-unit * 4 !default;
+$checkout-progress-step-number-color: $checkout-progress-step-number-color !default;
+$checkout-progress-step-background-color: $checkout-progress-color !default;
+$checkout-progress-step-completed-background-color: $checkout-progress-active-color !default;
+
+$checkout-progress-step-divider-height: 2px !default;
+$checkout-progress-step-divider-width: 20vw !default;
+$checkout-progress-step-divider-color: $checkout-progress-color !default;
+$checkout-progress-step-divider-color-complete: $checkout-progress-active-color !default;
+
+
+.checkout-progress {
+    @extend %list-reset;
+    margin-bottom: $vertical-margin;
+    text-align: center;
+    font-family: $checkout-progress-font;
+}
+
+    /**
+     * 1. a `.checkout-progress__step` is considered "completed" until:
+     * 2. it becomes activated, or
+     * 3. appears after the activated step
+     */
+    .checkout-progress__step {
+        display: inline-block;
+        color: $checkout-progress-completed-color; /* [1] */
+        vertical-align: middle;
+
+        @include respond-to($medium-breakpoint) {
+            margin: 0 $spacing-unit;
+        }
+    }
+
+    .checkout-progress__step--active { /* [2] */
+        color: $checkout-progress-active-color;
+        font-weight: bold;
+
+        ~ .checkout-progress__step { /* [3] */
+            color: $checkout-progress-color;
+        }
+    }
+
+        /**
+         * 1. the link only appears within the "completed" state
+         */
+        .checkout-progress__link {} /* [1] */
+
+        .checkout-progress__text {}
+
+        .checkout-progress__link,
+        .checkout-progress__text {
+            font-size: $checkout-progress-step-font-size;
+            letter-spacing: 1px;
+
+            @include respond-to($medium-breakpoint) {
+                font-size: $checkout-progress-step-font-size-wide;
+            }
+        }
+
+            .checkout-progress__step-number {
+                display: block;
+                position: relative;
+                margin: 0 auto;
+                width: $checkout-progress-step-number-size;
+                height: $checkout-progress-step-number-size;
+                color: $checkout-progress-step-number-color;
+                font-weight: bold;
+                line-height: $checkout-progress-step-number-size;
+                text-align: center;
+                background-color: $checkout-progress-step-completed-background-color;
+                vertical-align: middle;
+
+                .checkout-progress__step--active ~ .checkout-progress__step & {
+                    background-color: $checkout-progress-step-background-color;
+                }
+            }
+
+        .checkout-progress__divider {
+            display: inline-block;
+            position: relative;
+            top: $spacing-unit * -1;
+            width: $checkout-progress-step-divider-width;
+            height: $checkout-progress-step-divider-height;
+            background-color: $checkout-progress-step-divider-color-complete;
+            vertical-align: middle;
+
+            .checkout-progress__step--active ~ & {
+                background-color: $checkout-progress-step-divider-color;
+            }
+        }

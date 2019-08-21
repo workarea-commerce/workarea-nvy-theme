@@ -1,0 +1,75 @@
+/*------------------------------------*\
+    #TABLE
+\*------------------------------------*/
+
+$table-price-discount-color:  $red !default;
+$table-font: $secondary-font-family !default;
+$table-totals-border: 1px solid $table-totals-border-color !default;
+$table-totals-total-border-color: $table-totals-total-border-color !default;
+
+
+/**
+ * This component enhances the default styling for tables within
+ * `base/_tables.scss`.
+ *
+ * 1. handle `p` elements differently if found inside a table.
+ */
+
+.table {
+    width: 100%;
+    font-family: $table-font;
+
+    p { /* [1] */
+        margin: 0;
+
+        & + & {
+            margin-top: $spacing-unit;
+        }
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    td {
+        padding: $spacing-unit * 2 0;
+    }
+}
+
+.table--totals {
+    tr + tr {
+        border-top: $table-totals-border;
+    }
+
+    th {
+        font-weight: regular;
+    }
+
+    td {
+        text-align: right;
+    }
+
+    .table__total {
+        border-top-color: $table-totals-total-border-color;
+        border-top-width: 4px;
+    }
+}
+
+    .table__price-discount {
+        color: $table-price-discount-color;
+        white-space: nowrap;
+    }
+
+    .table__prices {
+        text-align: right;
+    }
+
+        .table__price {}
+
+            .table__price-label {}
+
+    .table__quantity {
+        text-align: center;
+    }
+
+    .table__total {}

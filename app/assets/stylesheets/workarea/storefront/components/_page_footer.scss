@@ -1,0 +1,104 @@
+/*------------------------------------*\
+    #PAGE-FOOTER
+\*------------------------------------*/
+
+$page-footer-background-color: $page-footer-background-color !default;
+$page-footer-checkout-background-color: $page-footer-checkout-background-color !default;
+$page-footer-color: $page-footer-color !default;
+$page-footer-checkout-color: $page-footer-checkout-color !default;
+$page-footer-link-color: $page-footer-link-color !default;
+$page-footer-link-color-hover: $page-footer-link-color-hover !default;
+$page-footer-email-form-max-width: 350px !default;
+$page-footer-email-input-width: calc(100% - 140px) !default;
+$page-footer-copyright-color: $page-footer-copyright-color !default;
+$page-footer-copyright-border: 1px solid $page-footer-border-color !default;
+
+
+.page-footer {
+    padding: ($spacing-unit * 6) ($spacing-unit * 2) $spacing-unit;
+    color: $page-footer-color;
+    background-color: $page-footer-background-color;
+
+    @include respond-to($medium-breakpoint) {
+        padding: ($spacing-unit * 5) ($spacing-unit * 4) $spacing-unit;
+    }
+
+    @include respond-to($wide-breakpoint) {
+        padding: ($spacing-unit * 8) ($spacing-unit * 10) $spacing-unit;
+    }
+}
+
+.page-footer--checkout {
+    color: $page-footer-checkout-color;
+    background-color: $page-footer-checkout-background-color;
+}
+
+    /**
+     * 1. make sure no content block can inject `p` tags that will break layout.
+     */
+    .page-footer__nav {
+        padding: ($spacing-unit * 8) 0;
+
+        @include respond-to($wide-breakpoint) {
+            padding: 0 ($spacing-unit * 4) ($spacing-unit * 4);
+        }
+
+        p { margin: 0; } /* [1] */
+    }
+
+    .page-footer__help {
+        @extend %list-reset;
+    }
+
+        .page-footer__help-item {
+            margin-bottom: $spacing-unit;
+        }
+
+            .page-footer__help-link {
+                color: $page-footer-link-color;
+
+                &:hover {
+                    color: $page-footer-link-color-hover;
+                }
+            }
+
+    .page-footer__email-signup {}
+
+        .page-footer__email-signup-heading {}
+
+        .page-footer__email-signup-form {
+            max-width: $page-footer-email-form-max-width;
+
+            @include respond-to($wide-breakpoint) {
+                display: inline-block;
+            }
+        }
+
+            .page-footer__email-value {
+                display: inline-block;
+                margin-right: $spacing-unit;
+                width: $page-footer-email-input-width;
+                vertical-align: top;
+            }
+
+            .page-footer__email-button {
+                display: inline-block;
+                vertical-align: top;
+            }
+
+
+    .page-footer__copyright {
+        margin: 0;
+        padding: ($spacing-unit * 2) 0;
+        color: $page-footer-copyright-color;
+        text-align: center;
+        border-top: $page-footer-copyright-border;
+
+        @include respond-to($wide-breakpoint) {
+            padding: ($spacing-unit * 3) 0;
+        }
+
+        .page-footer--checkout & {
+            color: $page-footer-checkout-color;
+        }
+    }

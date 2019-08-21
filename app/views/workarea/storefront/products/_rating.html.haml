@@ -1,0 +1,10 @@
+%p.rating{ title: "#{rating.round(2)} #{t('workarea.storefront.reviews.out_of')} #{t('workarea.storefront.reviews.stars', count: 5)}", itemprop: itemprop, itemscope: true, itemtype: itemtype }
+  - full_star_count.times do
+    = inline_svg 'workarea/storefront/icons/star.svg', class: 'rating__star'
+  - if half_star_size > 0
+    = inline_svg 'workarea/storefront/icons/half_star.svg', class: 'rating__star'
+  - empty_star_count.times do
+    = inline_svg 'workarea/storefront/icons/empty_star.svg', class: 'rating__star'
+  %span.rating__text.visually-hidden
+    %meta{ itemprop: 'ratingValue', content: rating.round(2) }
+    #{rating.round(2)} #{t('workarea.storefront.reviews.out_of')} #{t('workarea.storefront.reviews.stars', count: 5)}

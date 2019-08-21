@@ -1,0 +1,43 @@
+/*------------------------------------*\
+    #REVIEWS-AGGREGATE
+\*------------------------------------*/
+
+$reviews-aggregate-border: 1px solid $link-color !default;
+
+
+.reviews-aggregate {
+    @extend %clearfix;
+    margin: 0 0 ($spacing-unit * 2);
+
+    /**
+     * Extend `.rating {}` in _rating.scss.
+     */
+
+    .rating {
+        @extend %inline-list;
+        margin: 0 ($spacing-unit / 2) 0 0;
+    }
+}
+
+    .reviews-aggregate__rating-link {
+        display: inline-block;
+        vertical-align: middle;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .reviews-aggregate__count {
+        @extend %inline-list;
+    }
+
+    .reviews-aggregate__read {}
+
+    .reviews-aggregate__write-action {
+        &::before {
+            padding-right: ($spacing-unit / 2);
+            border-left: $reviews-aggregate-border;
+            content: '';
+        }
+    }

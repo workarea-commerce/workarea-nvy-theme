@@ -1,0 +1,28 @@
+.checkout-payment__secondary-method{ class: step.show_gift_card? ? 'checkout-payment__secondary-method--visible' : nil }
+
+  - if step.show_gift_card?
+    .message.message--info
+      %p.message__type
+        %span.message__icon= t('workarea.storefront.messages.info')
+      %p.message__text
+        #{t('workarea.storefront.gift_cards.balance', amount: number_to_currency(step.gift_card_balance))}
+        #{t('workarea.storefront.gift_cards.applied_to_order', amount: number_to_currency(step.gift_card_amount))}
+
+        - if step.order_covered_by_gift_card?
+          #{t('workarea.storefront.gift_cards.place_order', amount: number_to_currency(step.gift_card_amount))}
+        - if step.tender_required?
+          #{t('workarea.storefront.gift_cards.tender_required', amount: number_to_currency(step.order_balance))}
+
+  = optional_field(t('workarea.storefront.gift_cards.enter_gift_card_prompt'), step.gift_card.try(:number)) do
+
+    %h2= t('workarea.storefront.gift_cards.gift_card')
+
+    = form_tag checkout_add_gift_card_path, method: 'patch', id: 'gift_card_form', class: 'inline-form' do
+
+      .inline-form__cell
+        .value
+          = text_field_tag 'gift_card_number', step.gift_card.try(:number), class: 'text-box', autocomplete: 'off', title: t('workarea.storefront.gift_cards.gift_card_number'), placeholder: t('workarea.storefront.gift_cards.gift_card_number')
+          - if step.gift_card && step.gift_card.errors[:number].present?
+            %span.value__error= step.gift_card.errors[:number].first
+      .inline-form__cell
+        %p= button_tag t('workarea.storefront.gift_cards.apply_gift_card'), value: 'apply_gift_card', class: 'button button--large'

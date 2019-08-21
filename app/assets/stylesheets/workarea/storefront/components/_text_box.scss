@@ -1,0 +1,62 @@
+/*------------------------------------*\
+    #TEXT-BOX
+\*------------------------------------*/
+
+$text-box-background-color: $input-background-color !default;
+$text-box-border-color: $input-border-color !default;
+$text-box-invalid-border-color: $invalid-color !default;
+$text-box-valid-border-color: $valid-color !default;
+$text-box-disabled-color: $input-disabled-color !default;
+$text-box-disabled-background-color: $input-disabled-background-color !default;
+$text-box-disabled-border-color: $input-disabled-border-color !default;
+$text-box-border: 1px solid $text-box-border-color !default;
+
+$text-box-padding: $spacing-unit !default;
+$text-box-width:              200px !default;
+$text-box-x-small-width:       62px !default;
+$text-box-small-width:         96px !default;
+$text-box-wide-width:         256px !default;
+
+$text-box-multi-line-height:  168px !default;
+
+
+.text-box {
+    padding: $text-box-padding;
+    width: $text-box-width;
+    background-color: $text-box-background-color;
+    border: $text-box-border;
+    border-radius: 0;
+    transition: border $transition-time ease-in-out;
+
+    &:focus {
+        @include focus-ring;
+    }
+
+    &:disabled {
+        color: $text-box-disabled-color;
+        background: $text-box-disabled-background-color;
+        border-color: $text-box-disabled-border-color;
+    }
+
+    .property--invalid & {
+        border-color: $text-box-invalid-border-color;
+    }
+
+    .page-footer & {
+        color: $page-footer-color;
+    }
+}
+
+.text-box--x-small    { width:  $text-box-x-small-width;     }
+.text-box--small      { width:  $text-box-small-width;       }
+.text-box--wide       { width:  $text-box-wide-width;        }
+.text-box--full       { width:  100%;                        }
+.text-box--multi-line { height: $text-box-multi-line-height; }
+
+.text-box--invalid {
+    border-color: $text-box-invalid-border-color;
+}
+
+.text-box--valid {
+    border-color: $text-box-valid-border-color;
+}
