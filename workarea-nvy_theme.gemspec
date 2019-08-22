@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Workarea::NvyTheme::VERSION
   s.authors     = ['Jake Beresford']
   s.email       = ['jberesford@weblinc.com']
-  s.homepage    = 'https://stash.tools.weblinc.com/projects/WP/repos/workarea-nvy-theme/browse'
+  s.homepage    = 'https://github.com/workarea-commerce/workarea-nvy_theme'
   s.summary     = 'Nvy Theme is an apparel focused theme for the Workarea ecommerce platform'
   s.description = 'Nvy Theme is an apparel focused theme for the Workarea ecommerce platform'
 
