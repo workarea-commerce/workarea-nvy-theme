@@ -7,8 +7,8 @@ require 'workarea/nvy_theme/version'
 Gem::Specification.new do |s|
   s.name        = 'workarea-nvy_theme'
   s.version     = Workarea::NvyTheme::VERSION
-  s.authors     = ['Jake Beresford']
-  s.email       = ['jberesford@weblinc.com']
+  s.authors     = ['Curt Howard']
+  s.email       = ['choward@workarea.com']
   s.homepage    = 'https://github.com/workarea-commerce/workarea-nvy_theme'
   s.summary     = 'Nvy Theme is an apparel focused theme for the Workarea ecommerce platform'
   s.description = 'Nvy Theme is an apparel focused theme for the Workarea ecommerce platform'
