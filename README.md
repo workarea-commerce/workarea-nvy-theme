@@ -1,4 +1,5 @@
-# Workarea Nvy Theme
+Workarea Nvy Theme
+================================================================================
 
 Nvy Theme plugin for the Workarea platform.
 
@@ -9,13 +10,15 @@ Nvy Theme plugin for the Workarea platform.
 For bug reports and improvement suggestions create a ticket in the [NVYTHEME jira
 project.](https://jira.tools.weblinc.com/projects/NVYTHEME/issues)
 
-## Browser Support
+Browser Support
+--------------------------------------------------------------------------------
 
 Due to the occasional use of flexbox; NvyTheme only supports IE 10+
 If you need to support older versions of IE you will need to provide alternative styles
 where flexbox is used.
 
-## Optimal Image Sizes
+Optimal Image Sizes
+--------------------------------------------------------------------------------
 
 | Image Type| Optimum size | Note |
 |----------|--------|-------|
@@ -24,7 +27,8 @@ where flexbox is used.
 | Product Images | 944px x 1416px | This size does not account for use of image-zoom, it is recommended to *at least* double this size if your client is likely to want zoom functionality. |
 | Blog thumbnails | 160px x 160px ||
 
-## Out of the box plugin support
+Out of the box plugin support
+--------------------------------------------------------------------------------
 
 The following workarea plugins are supported by NvyTheme, and are dependencies of the plugin.
 
@@ -38,7 +42,26 @@ The following workarea plugins are supported by NvyTheme, and are dependencies o
 * Slick Slider
 * Wish Lists
 
-## Theme Configuration
+Getting Started
+--------------------------------------------------------------------------------
+
+Add the gem to your application's Gemfile:
+
+```ruby
+# ...
+gem 'workarea-nvy_theme'
+# ...
+```
+
+Update your application's bundle.
+
+```bash
+cd path/to/application
+bundle
+```
+
+Theme Configuration
+--------------------------------------------------------------------------------
 
 ### Recommended initializer configuration
 
@@ -84,7 +107,9 @@ more developer friendly. In the meantime you can create a new color scheme by:
 2. Update the color_scheme config to match the name of your new color scheme file.
 
 __Example__
-This will create a sass file called _custom_color_scheme.scss in your host application, please change <your-app-name>
+
+This will create a sass file called `_custom_color_scheme.scss` in your host application, please change \<your-app-name\> in the following command to the directory of your application.
+
 From your ~/src directory, ensure you have workarea-nvy-theme pulled down
 
 ```bash
@@ -121,7 +146,7 @@ I recommend using google fonts where possible, the [googlefonts webfont helper](
 1. Create a new directory in app/assets/fonts/workarea/storefront/<your_font_name_here>
 2. Download woff and woff2 files for the font you want to use.
 3. Place your font files in the directory we created in step 1.
-4. Create a sass file for you @font-face declarations in /app/assets/stylesheets/workarea/storefront/theme_config/fonts/_<your_font_name_here>.scss
+4. Create a sass file for you @font-face declarations in /app/assets/stylesheets/workarea/storefront/theme_config/fonts/`_<your_font_name_here>.scss`
 5. Update your theme initializer, adding a new font_stack and setting either the primary_font_family or secondary_font_family
 
 Example configuration for Calibri font stack used as secondary font family:
@@ -136,50 +161,12 @@ config.theme = config.theme.merge(
 )
 ```
 
----
+Workarea Commerce Documentation
+--------------------------------------------------------------------------------
 
-## Getting Started
+See [https://developer.workarea.com](https://developer.workarea.com) for Workarea Commerce documentation.
 
-This gem contains a rails engine that must be mounted onto a host Rails application.
+License
+--------------------------------------------------------------------------------
 
-To access Workarea gems and source code, you must be an employee of WebLinc or a licensed retailer or partner.
-
-Workarea gems are hosted privately at <https://gems.weblinc.com/>.
-You must have individual or team credentials to install gems from this server. Add your gems server credentials to Bundler:
-
-    bundle config gems.weblinc.com my_username:my_password
-
-Or set the appropriate environment variable in a shell startup file:
-
-    export BUNDLE_GEMS__WEBLINC__COM='my_username:my_password'
-
-Then add the gem to your application's Gemfile specifying the source:
-
-    # ...
-    gem 'workarea-nvy_theme', source: 'https://gems.weblinc.com'
-    # ...
-
-Or use a source block:
-
-    # ...
-    source 'https://gems.weblinc.com' do
-      gem 'workarea-nvy_theme'
-    end
-    # ...
-
-Update your application's bundle.
-
-    cd path/to/application
-    bundle
-
----
-
-## Workarea Platform Documentation
-
-See [http://developer.weblinc.com](http://developer.weblinc.com) for Workarea platform documentation.
-
-## Copyright & Licensing
-
-Copyright WebLinc 2018 All rights reserved.
-
-For licensing, contact sales@workarea.com.
+Workarea NVY Theme is released under the [Business Software License](LICENSE)
