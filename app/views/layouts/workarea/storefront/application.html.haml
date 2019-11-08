@@ -89,6 +89,7 @@
             = form_tag search_path, method: 'get', class: 'page-header__search-form', role: 'search' do
               .page-header__search-value
                 .value= search_field_tag :q, params[:q], id: 'storefront_search', class: 'text-box text-box--full', title: t('workarea.storefront.searches.search'), aria: { label: t('workarea.storefront.searches.search') }, placeholder: t('workarea.storefront.searches.search'), data: { search_field: '' }
+                = append_partials('storefront.page_header_search_value')
               = button_tag value: 'search', class: 'page-header__search-button' do
                 = inline_svg('workarea/storefront/icons/search.svg', class: 'page-header__search-icon', title: t('workarea.storefront.forms.go'))
 
