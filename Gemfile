@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Declare your gem's dependencies in nvy_theme.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -15,4 +14,16 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
-gem 'workarea'
+gem 'workarea', github: 'workarea-commerce/workarea'
+
+gem 'workarea-theme', github: 'workarea-commerce/workarea-theme'
+gem 'workarea-blog', github: 'workarea-commerce/workarea-blog'
+gem 'workarea-gift_cards', github: 'workarea-commerce/workarea-gift-cards'
+gem 'workarea-product_quickview', github: 'workarea-commerce/workarea-product-quickview', branch: 'v2.0-stable'
+gem 'workarea-reviews', github: 'workarea-commerce/workarea-reviews'
+gem 'workarea-share', github: 'workarea-commerce/workarea-share'
+gem 'workarea-swatches', github: 'workarea-commerce/workarea-swatches'
+gem 'workarea-styled_selects', github: 'workarea-commerce/workarea-styled-selects'
+gem 'workarea-slick_slider', github: 'workarea-commerce/workarea-slick-slider'
+gem 'workarea-wish_lists', github: 'workarea-commerce/workarea-wish-lists'
+gem 'workarea-search_autocomplete', github: 'workarea-commerce/workarea-search-autocomplete'

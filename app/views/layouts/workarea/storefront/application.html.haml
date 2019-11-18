@@ -1,5 +1,6 @@
 - add_css(layout_content.css)
 - add_javascript(layout_content.javascript)
+- add_head_content(layout_content.head_content)
 
 !!!
 /
@@ -32,19 +33,11 @@
     = append_partials('storefront.document_head')
     = javascript_include_tag Workarea.config.asset_manifests.storefront_javascript_head
 
-    %script{ type: 'application/ld+json' }
-      :plain
-        {
-          "@context": "http://schema.org",
-          "@type": "WebSite",
-          "url": "#{root_url}",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "#{search_url}?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        }
+    = render_schema_org(web_site_schema)
+    = render_schema_org(web_page_schema)
 
+    = yield :head_content
+    = yield :javascript_head
 
   %body{ itemscope: true, itemtype: 'http://schema.org/WebPage' }
     = append_partials('storefront.body_top')
@@ -119,7 +112,6 @@
               %li.primary-nav__item{ data: navigation_menu_item_data_attribute(menu) }
                 = link_to menu.name, storefront_path_for(menu.taxon), class: (link_selected?(menu.taxon) ? 'primary-nav__link primary-nav__link--selected' : 'primary-nav__link'), data: { analytics: primary_navigation_analytics_data(menu.taxon).to_json }
 
-
       .page-content
 
         .content-wrapper
@@ -127,10 +119,12 @@
             .breadcrumbs{ role: 'navigation' }
               = yield :breadcrumbs
           - elsif @breadcrumbs.present?
+            = render_schema_org(breadcrumb_list_schema(@breadcrumbs.map { |t| [t.name, storefront_url_for(t)] }))
+
             .breadcrumbs{ role: 'navigation' }
               %p.breadcrumbs__node-group
                 - @breadcrumbs.each do |taxon|
-                  %span.breadcrumbs__node{ itemprop: 'breadcrumb' }
+                  %span.breadcrumbs__node
                     - if taxon.navigable.present?
                       - if @breadcrumbs.last == taxon
                         %span.breadcrumbs__text= taxon.name

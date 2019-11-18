@@ -60,6 +60,8 @@
                   - item.customizations.each do |name, value|
                     #{name.titleize}: #{value}
                     %br
+                  - if item.token&.enabled?
+                    = link_to t('workarea.storefront.orders.download'), download_path(item.token)
                   = append_partials('storefront.order_summary_item_details', item: item)
 
         .grid__cell.grid__cell--25-at-medium

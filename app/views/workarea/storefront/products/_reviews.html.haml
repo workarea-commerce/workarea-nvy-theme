@@ -9,14 +9,14 @@
 
     %ol.reviews__review-group
       - product.reviews.each do |review|
-        %li.reviews__review{ itemprop: 'review', itemscope: true, itemtype: 'http://schema.org/Review', data: { product_review_section_entry: { rating: review.rating.to_f, createdAt: review.created_at.to_i }.to_json } }
+        %li.reviews__review{ data: { product_review_section_entry: { rating: review.rating.to_f, createdAt: review.created_at.to_i }.to_json } }
           = rating_stars(review.rating)
 
-          %h3.reviews__review-title{ itemprop: 'name' }= review.title
-          %p.reviews__review-body{ itemprop: 'reviewBody' }= review.body
+          %h3.reviews__review-title= review.title
+          %p.reviews__review-body= review.body
           .reviews__review-meta
-            %p.reviews__review-author{ itemprop: 'author', itemscope: true, itemtype: 'http://schema.org/Person' }
-              %span{ itemprop: 'name' }= review.user_info
+            %p.reviews__review-author
+              %span= review.user_info
             - if review.verified?
               %p.reviews__review-verified= t('workarea.storefront.reviews.verified_purchaser')
-            %p.reviews__review-date= local_time(review.created_at, format: :long, itemprop: 'datePublished')
+            %p.reviews__review-date= local_time(review.created_at, format: :long)
