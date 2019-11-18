@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
 
   s.license = 'Business Software License'
 
-  s.add_dependency 'workarea', '~> 3.4.x'
+  s.add_dependency 'workarea', '~> 3.5.x'
   s.add_dependency 'workarea-theme', '~> 1.1.1'
 
   s.add_dependency 'workarea-blog', '~> 3.x', '>= 3.3.0'
@@ -26,7 +26,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'workarea-reviews', '~> 3.x'
   s.add_dependency 'workarea-share', '~> 1.x', '>= 1.2.0'
   s.add_dependency 'workarea-swatches', '~> 1.x'
-  s.add_dependency "workarea-styled_selects", '~> 1.x'
-  s.add_dependency "workarea-slick_slider", '~> 1.x'
-  s.add_dependency "workarea-wish_lists", '>= 2.1.0'
+  s.add_dependency 'workarea-styled_selects', '~> 1.x'
+  s.add_dependency 'workarea-slick_slider', '~> 1.x'
+  s.add_dependency 'workarea-wish_lists', '>= 2.1.0'
+  s.add_dependency 'workarea-search_autocomplete', '~> 1.x'
 end

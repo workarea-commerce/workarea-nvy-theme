@@ -12,6 +12,7 @@ require "workarea/swatches"
 require "workarea/styled_selects"
 require "workarea/slick_slider"
 require "workarea/wish_lists"
+require "workarea/search_autocomplete"
 
 require 'workarea/nvy_theme/engine'
 require 'workarea/nvy_theme/version'

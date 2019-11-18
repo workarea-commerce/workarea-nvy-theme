@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Declare your gem's dependencies in nvy_theme.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -15,4 +14,5 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
-gem 'workarea'
+gem 'workarea', github: 'workarea-commerce/workarea'
+gem 'workarea-search_autocomplete', github: 'workarea-commerce/workarea-search-autocomplete'
