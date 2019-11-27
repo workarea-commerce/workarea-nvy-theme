@@ -85,7 +85,7 @@ module Workarea
     def test_announcing_product_click_event
       visit storefront.category_path(@category)
 
-      disable_dom_events
+      disable_analytics_dom_events
       within '.product-summary__name', match: :first do
         click_link 'Test Product 2'
       end

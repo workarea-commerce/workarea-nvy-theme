@@ -8,8 +8,9 @@
         - if user.wish_list_items.any?
           .grid
             - user.wish_list_items.each do |item|
+              = render_schema_org(product_schema(item.product))
               .grid__cell.grid__cell--50.grid__cell--33-at-medium
-                .product-summary{ itemscope: true, itemtype: 'http://schema.org/Product' }
+                .product-summary
                   = render 'workarea/storefront/products/summary', product: item.product
         - else
-          %p= t('workarea.storefront.wish_lists.empty_wish_list')
+          %p= t('workarea.storefront.wish_lists.empty.message', state: t('workarea.storefront.wish_lists.empty.states.unpurchased'))

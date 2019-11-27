@@ -41,11 +41,13 @@ WORKAREA.registerModule('mobileFilterButtons', (function () {
 
         inject = function () {
             var $nav = $('<div class="mobile-filters-nav" id="mobile_filters_nav" />'),
-                $content = $('#aside-content');
+                $content = $('#aside-content').clone(true);
 
             $nav.append($content);
 
             addCloseButton($nav);
+
+            WORKAREA.initModules($nav);
 
             $('body').append($nav);
 

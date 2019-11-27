@@ -8,6 +8,8 @@
     = render_content_blocks(@content.content_blocks_for('confirmation'))
 
   %p= t('workarea.storefront.checkouts.confirmation_text', email: @order.email)
+  = append_partials('storefront.checkout_confirmation_text')
+
 
   - if @order.user.present?
 
@@ -37,5 +39,5 @@
           %span.button-property__text= t('workarea.storefront.users.sign_up_for_email')
       %p= button_tag t('workarea.storefront.users.create_account'), value: 'sign_up', class: 'button button--solid button--large', data: { disable_with: loading_indicator(t('workarea.storefront.users.create_account_disabled_text')) }
 
-  = render 'workarea/storefront/orders/summary', order: @order, recommendations: @order.recommendations, show_fulfillment: false
+  = render 'workarea/storefront/orders/summary', order: @order, recommendations: @order.recommendations
   = append_partials('storefront.checkout_confirmation')

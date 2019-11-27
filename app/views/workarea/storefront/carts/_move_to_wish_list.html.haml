@@ -1,6 +1,7 @@
 .grid__cell
   = form_tag from_cart_users_wish_list_path(item), method: 'post' do
     = hidden_field_tag :return_to, users_wish_list_path, id: "wishlist_return_to_#{dom_id(item)}"
-    = button_tag value: 'move_to_wish_list', class: 'text-button' do
-      = inline_svg('workarea/storefront/icons/heart.svg', class: 'text-button__icon')
-      = t('workarea.storefront.wish_lists.move_to_wish_list')
+    %p
+      = button_tag t('workarea.storefront.wish_lists.move_to_wish_list'), value: 'move_to_wish_list', class: 'text-button', data: { analytics: add_to_wish_list_analytics_data(item.product).to_json } do
+        = inline_svg('workarea/storefront/icons/heart.svg', class: 'text-button__icon')
+        = t('workarea.storefront.wish_lists.move_to_wish_list')
