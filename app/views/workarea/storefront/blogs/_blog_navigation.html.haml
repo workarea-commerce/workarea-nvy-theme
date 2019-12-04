@@ -1,6 +1,7 @@
 - if blog.tags.present?
-  .secondary-nav{ role: 'navigation' }
-    %h2.secondary-nav__heading= t('workarea.storefront.blogs.tags')
-    %ul.secondary-nav__links
-      - blog.tags.each do |tag|
-        %li.secondary-nav__item= link_to "#{tag[:name]} (#{tag[:count]})", blog_tagged_path(blog, tag[:name]), class: 'secondary-nav__link'
+  %h2= t('workarea.storefront.blogs.tags')
+  %ul.secondary-nav{ role: 'navigation' }
+    - blog.tags.each do |tag|
+      %li.secondary-nav__item
+        = link_to blog_tagged_path(blog, tag[:name]), class: 'secondary-nav__link' do
+          = t('workarea.storefront.blogs.tag_link', tag)

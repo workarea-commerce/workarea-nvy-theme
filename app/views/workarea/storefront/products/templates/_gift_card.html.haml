@@ -5,9 +5,9 @@
   .grid__cell.grid__cell--40-at-medium
     .product-details__info
       .product-details__name
-        %h1.product-details__heading{ itemprop: 'name' }= product.name
+        %h1.product-details__heading= product.name
 
-      .product-prices.product-prices--details{ itemprop: 'offers', itemscope: true, itemtype: 'http://schema.org/Offer' }
+      .product-prices.product-prices--details
         = render 'workarea/storefront/products/pricing', product: product
 
       - if product.description.present?
@@ -15,7 +15,7 @@
           %p= truncated_product_description(product, t('workarea.storefront.products.read_more'))
 
       %p.product-details__id
-        %span{ itemprop: 'productID' }= product.id
+        %span= product.id
 
       = form_tag cart_items_path, method: 'post', class: 'product-details__add-to-cart-form', data: { dialog_form: { dialogOptions: { closeAll: true, initModules: true } }, analytics: add_to_cart_analytics_data(product).to_json } do
         = hidden_field_tag :product_id, product.id, id: dom_id(product, 'product_id')
@@ -64,4 +64,4 @@
 
       = append_partials('storefront.product_details', product: product)
 
-      %p.product-details__full-details=link_to t('workarea.storefront.products.view_full_details'), product_path(product, color: params[:color]), class: 'text-button', itemprop: 'url'
+      %p.product-details__full-details=link_to t('workarea.storefront.products.view_full_details'), product_path(product, color: params[:color]), class: 'text-button'

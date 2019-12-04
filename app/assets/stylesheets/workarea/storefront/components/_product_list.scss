@@ -13,9 +13,21 @@ $product-list-info-item-margin: $spacing-unit 0 0 !default;
 .product-list {
     @extend %list-reset;
     margin-bottom: $vertical-margin;
+
+    @include respond-to($medium-breakpoint) {
+        display: table;
+        width: 100%;
+        border-spacing: 0;
+        border-collapse: collapse;
+    }
 }
 
-.product-list--narrow {}
+.product-list--narrow {
+    @include respond-to($medium-breakpoint) {
+        display: block;
+        width: auto;
+    }
+}
 
     .product-list__item {
         @extend %clearfix;
@@ -24,12 +36,7 @@ $product-list-info-item-margin: $spacing-unit 0 0 !default;
         border-bottom: $product-list-item-border;
 
         @include respond-to ($medium-breakpoint) {
-            display: table;
-            margin-bottom: $spacing-unit * 3;
-            width: 100%;
-            border: $product-list-item-border;
-            border-spacing:  0;
-            border-collapse: collapse;
+            display: table-row;
         }
 
         .product-list--narrow & {

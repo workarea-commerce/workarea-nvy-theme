@@ -48,8 +48,11 @@
               %li
                 %p
                   = link_to item.product_name, product_path(item.product, sku: item.sku)
+                  - if item.quantity > 1
+                    %br
+                    %strong #{t('workarea.storefront.orders.quantity')}: #{item.quantity}
                   %br
-                  %strong #{item.quantity} @ #{number_to_currency(item.original_price)} #{t('workarea.storefront.orders.each')}
+                  %strong= number_to_currency(item.total_price)
                   %br
                   = item.sku
                   %br
@@ -59,6 +62,8 @@
                       %br
                   - item.customizations.each do |name, value|
                     #{name.titleize}: #{value}
+                  - if item.token&.enabled?
+                    = link_to t('workarea.storefront.orders.download'), download_path(item.token)
                     %br
                   = append_partials('storefront.order_summary_item_details', item: item)
 
@@ -257,7 +262,7 @@
           .grid
             - recommendations.each do |product|
               .grid__cell.grid__cell--50.grid__cell--25-at-medium
-                .product-summary.product-summary--small{ itemscope: true, itemtype: 'http://schema.org/Product' }
+                .product-summary.product-summary--small
                   = render 'workarea/storefront/products/summary', product: product
 
   %ul.order-help-menu

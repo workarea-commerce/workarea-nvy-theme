@@ -8,9 +8,6 @@
         = link_to "https://twitter.com/intent/tweet?#{twitter_query_string(share_url, message)}", class: 'share-buttons__button', title: t('workarea.storefront.shares.share_on_twitter'), target: '_blank', data: { popup_button: '', analytics: share_analytics_data('twitter', share_url).to_json } do
           = inline_svg('workarea/storefront/icons/twitter.svg', class: 'share-buttons__icon')
       %li.share-buttons__item
-        = link_to "https://plus.google.com/share?#{share_query_string(share_url)}", class: 'share-buttons__button', title: t('workarea.storefront.shares.share_on_google'), target: '_blank', data: { popup_button: '', analytics: share_analytics_data('google plus', share_url).to_json } do
-          = inline_svg('workarea/storefront/icons/google_plus.svg', class: 'share-buttons__icon')
-      %li.share-buttons__item
         = link_to "https://pinterest.com/pin/create/button/?#{share_query_string(share_url, message, local_assigns[:image])}", class: 'share-buttons__button', title: t('workarea.storefront.shares.share_on_pinterest'), target: '_blank', data: { popup_button: '', analytics: share_analytics_data('pinterest', share_url).to_json } do
           = inline_svg('workarea/storefront/icons/pinterest.svg', class: 'share-buttons__icon')
     - if message.present?

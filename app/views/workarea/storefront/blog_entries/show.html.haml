@@ -1,16 +1,25 @@
 - @title = @entry.browser_title
 - @breadcrumbs = @breadcrumbs
 
+- add_css(@entry.css)
+- add_javascript(@entry.javascript)
+
+= render_schema_org(breadcrumb_list_schema([[t('workarea.storefront.layouts.home'), root_url], [@entry.blog.name, blog_url(@entry.blog)], [@entry.name, blog_entry_url(@entry)]]))
+= render_schema_org(blog_posting_schema(@entry))
+
 - content_for :breadcrumbs do
   %p.breadcrumbs__node-group
-    %span.breadcrumbs__node{ itemprop: 'breadcrumb' }
+    %span.breadcrumbs__node
       = link_to t('workarea.storefront.layouts.home'), root_path, rel: 'home'
-    %span.breadcrumbs__node{ itemprop: 'breadcrumb' }
+    %span.breadcrumbs__node
       = link_to @entry.blog.name, blog_path(@entry.blog)
-    %span.breadcrumbs__node{ itemprop: 'breadcrumb' } #{@entry.name}
+    %span.breadcrumbs__node= @entry.name
 
 - content_for :head do
   %link{ href: blog_entry_path(@entry), rel: 'canonical' }
+  %meta{ property: 'og:title', content: @entry.name }
+  %meta{ property: 'og:type', content: 'article' }
+  %meta{ property: 'og:url', content: blog_entry_path(@entry) }
   - if @entry.thumbnail_image.present?
     %meta{ property: 'og:image', content: @entry.thumbnail_image_url }
   %meta{ property: 'global-id', content: @entry.to_global_id.to_param }
@@ -20,32 +29,27 @@
 - content_for :page_aside do
   = render 'workarea/storefront/blogs/blog_navigation', blog: @entry.blog
 
-%article.blog-entry.view{ itemscope: true, itemtype: 'http://schema.org/BlogPosting' }
+%article.blog-entry.view
 
   %heading.blog-entry__header
     - if @entry.content_blocks_for(:blog_header).present?
       != render_content_blocks(@entry.content_blocks_for('blog_header'))
 
-    - if @entry.has_thumbnail_image?
-      %meta{ itemprop: 'image', content: @entry.thumbnail_image_url }
-
-    %h1.blog-entry__title{ itemprop: 'mainEntityOfPage' }
-      %span{ itemprop: 'headline' }= @entry.name
-    %p.blog-entry__author{ itemprop: 'author' }= @entry.author
+    %h1.blog-entry__title
+      %span= @entry.name
+    %p.blog-entry__author= @entry.author
     %p.blog-entry__datetime
-      %meta{ itemprop: 'dateModified', content: @entry.written_at }
-      = local_time(@entry.written_at, format: :long, itemprop: 'datePublished')
-    %p.blog-entry__comment-count{ itemprop: 'commentCount' }= link_to t('workarea.storefront.blogs.comments', count: @entry.comment_count), blog_entry_path(@entry, anchor: 'blog-entry-comments')
-    = render 'workarea/storefront/blog_metadata/publisher'
+      = local_time(@entry.written_at, format: :long)
+    %p.blog-entry__comment-count= link_to t('workarea.storefront.blogs.comments', count: @entry.comment_count), blog_entry_path(@entry, anchor: 'blog-entry-comments')
 
     - if @entry.tags.present?
       .blog-entry__tags
         %p.blog-entry__label= t('workarea.storefront.blogs.tags')
-        %ul.blog-entry__tags-list{ itemprop: 'keywords' }
+        %ul.blog-entry__tags-list
           - @entry.tags.each do |tag|
             %li.blog-entry__tags-list-item= link_to tag, blog_tagged_path(@entry.blog, tag)
 
-  .blog-entry__body{ itemprop: 'articleBody' }
+  .blog-entry__body
     - if @entry.content_blocks_for(:blog_content).present?
       != render_content_blocks(@entry.content_blocks_for('blog_content'))
 
@@ -54,8 +58,10 @@
       %h2.blog-entry__products-heading= t('workarea.storefront.blogs.related_products')
       %ul.grid.grid--auto
         - @entry.products.each do |product|
+          = render_schema_org(product_schema(product))
+
           %li.grid__cell>
-            .product-summary{ itemscope: true, itemtype: 'http://schema.org/Product' }
+            .product-summary
               = render 'workarea/storefront/products/summary', product: product
 
   #blog-entry-comments.blog-entry__comments
@@ -67,13 +73,13 @@
           %p.blog-entry__write-comment-link= link_to t('workarea.storefront.blogs.write_comment'), '#write-comment', class: 'button button--solid'
         %ul.blog-entry__comment-group
           - @entry.comments.each do |comment|
-            %li.blog-entry__comment{ itemprop: 'comment', itemscope: true, itemType: 'http://schema.org/Comment' }
+            %li.blog-entry__comment
               %p.blog-entry__comment-item.blog-entry__comment-item--author
                 = comment.user_info
               %p.blog-entry__comment-item.blog-entry__comment-item--datetime
-                = local_time(comment.created_at, format: :long, itemprop: 'dateCreated');
+                = local_time(comment.created_at, format: :long);
 
-              %p.blog-entry__comment-item.blog-entry__comment-item--body{itemprop: 'text'}
+              %p.blog-entry__comment-item.blog-entry__comment-item--body
                 = comment.body
 
     #write-comment.blog-entry__section{ data: { blog_comment_placeholder: blog_entry_comments_path(@entry) } }

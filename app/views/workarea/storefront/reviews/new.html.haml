@@ -21,14 +21,14 @@
           %span.property__text= t('workarea.storefront.users.first_name')
         .value
           = text_field_tag 'review[first_name]', @review.first_name, class: 'text-box', required: true
-          .value__note Only the first letter of your name will be displayed.
+          .value__note= t('workarea.storefront.reviews.notes.display_name')
       .property
         = label_tag 'review[last_name]', nil, class: 'property__name' do
           %span.property__requirement.property__requirement--required= t('workarea.storefront.forms.required')
           %span.property__text= t('workarea.storefront.users.last_name')
         .value
           = text_field_tag 'review[last_name]', @review.last_name, class: 'text-box', required: true
-          .value__note Only the first letter of your name will be displayed.
+          .value__note= t('workarea.storefront.reviews.notes.display_name')
 
     - if @review.anonymous?
       .property
@@ -37,7 +37,7 @@
           %span.property__requirement.property__requirement--optional= t('workarea.storefront.forms.optional')
         .value
           = email_field_tag 'review[email]', @review.email, class: 'text-box', autocapitalize: 'off', autocorrect: 'off', autocomplete: 'email'
-          .value__note Will only be used if we need to get in touch with you.
+          .value__note= t('workarea.storefront.reviews.notes.email')
 
 
     .property

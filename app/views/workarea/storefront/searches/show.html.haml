@@ -1,7 +1,6 @@
 - @title = t('workarea.storefront.searches.title')
 
 - content_for :head do
-  %meta{ property: 'recent-view', content: recent_view_content(search: @search.query_string) }
   %meta{ name: 'robots', content: 'noindex' }
   = append_partials('storefront.search_head', search: @search)
 
@@ -13,11 +12,11 @@
 
 - content_for :breadcrumbs do
   %p.breadcrumbs__node-group
-    %span.breadcrumbs__node{ itemprop: 'breadcrumb' }
+    %span.breadcrumbs__node
       = link_to t('workarea.storefront.layouts.home'), root_path, rel: 'home', class: 'breadcrumbs__link'
-    %span.breadcrumbs__node{ itemprop: 'breadcrumb' }
+    %span.breadcrumbs__node
       %span.breadcrumbs__text= t('workarea.storefront.searches.title')
-    %span.breadcrumbs__node{ itemprop: 'breadcrumb' }
+    %span.breadcrumbs__node
       %span.breadcrumbs__text= @search.query_string
 
 - content_for :page_aside do
@@ -97,7 +96,7 @@
           = append_partials('storefront.search_grid_item', product: product, position: position)
 
           .grid__cell.grid__cell--50.grid__cell--33-at-medium{ data: { pagination_item: '' } }
-            .product-summary{ itemscope: true, itemtype: 'http://schema.org/Product', data: { search_results_product_grid_summary: { id: product.catalog_id, position: position }.to_json } }
+            .product-summary{ data: { search_results_product_grid_summary: { id: product.catalog_id, position: position }.to_json } }
               = render 'workarea/storefront/products/summary', product: product
       - if show_pagination?(@search.products)
         .pagination__button

@@ -7,8 +7,8 @@
           = link_to product_image_url(image, :zoom), class: button_class, target: '_blank', rel: 'noopener', data: { alternate_image_button: { src: product_image_url(image, :detail) }.to_json } do
             %picture
               %source{ srcset: product_image_url(image, :small_thumb), product_image_url(image, :small_thumb) => '1x', media: "(min-width: #{Workarea.config.storefront_break_points[:medium]}px)" }
-              = image_tag(product_image_url(image, :detail), alt: t('workarea.storefront.products.zoom'), itemprop: 'image')
+              = image_tag(product_image_url(image, :detail), alt: t('workarea.storefront.products.zoom'))
 
   .product-media__primary-image
-    = link_to(product_image_url(product.primary_image, :zoom), target: '_blank', rel: 'noopener', class: 'product-media__primary-image-link', data: { dialog_button: '' }) do
-      = image_tag product_image_url(product.primary_image, :detail), alt: t('workarea.storefront.products.image_alt_attribute', name: product.name), itemprop: 'image', class: 'product-media__primary-image-link-image'
+    = link_to(product_image_url(product.primary_image, :zoom), target: '_blank', rel: 'noopener', class: 'product-media__primary-image-link', style: intrinsic_ratio_product_image_styles(product.primary_image), data: { dialog_button: '' }) do
+      = image_tag product_image_url(product.primary_image, :detail), alt: t('workarea.storefront.products.image_alt_attribute', name: product.name), class: 'product-media__primary-image-link-image'

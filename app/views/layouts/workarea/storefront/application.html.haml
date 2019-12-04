@@ -1,5 +1,6 @@
 - add_css(layout_content.css)
 - add_javascript(layout_content.javascript)
+- add_head_content(layout_content.head_content)
 
 !!!
 /
@@ -32,21 +33,13 @@
     = append_partials('storefront.document_head')
     = javascript_include_tag Workarea.config.asset_manifests.storefront_javascript_head
 
-    %script{ type: 'application/ld+json' }
-      :plain
-        {
-          "@context": "http://schema.org",
-          "@type": "WebSite",
-          "url": "#{root_url}",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "#{search_url}?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        }
+    = render_schema_org(web_site_schema)
+    = render_schema_org(web_page_schema)
 
+    = yield :head_content
+    = yield :javascript_head
 
-  %body{ itemscope: true, itemtype: 'http://schema.org/WebPage' }
+  %body
     = append_partials('storefront.body_top')
 
     %nav.accessibility-nav.visually-hidden{ role: 'navigation' }
@@ -88,7 +81,7 @@
           .page-header__search
             = form_tag search_path, method: 'get', class: 'page-header__search-form', role: 'search' do
               .page-header__search-value
-                .value= search_field_tag :q, params[:q], id: 'storefront_search', class: 'text-box text-box--full', title: t('workarea.storefront.searches.search'), aria: { label: t('workarea.storefront.searches.search') }, placeholder: t('workarea.storefront.searches.search'), data: { search_field: '' }
+                .value= search_field_tag :q, params[:q], id: 'storefront_search', class: 'text-box text-box--full', title: t('workarea.storefront.searches.search'), aria: { label: t('workarea.storefront.searches.search') }, placeholder: t('workarea.storefront.searches.search')
                 = append_partials('storefront.page_header_search_value')
               = button_tag value: 'search', class: 'page-header__search-button' do
                 = inline_svg('workarea/storefront/icons/search.svg', class: 'page-header__search-icon', title: t('workarea.storefront.forms.go'))
@@ -130,7 +123,7 @@
             .breadcrumbs{ role: 'navigation' }
               %p.breadcrumbs__node-group
                 - @breadcrumbs.each do |taxon|
-                  %span.breadcrumbs__node{ itemprop: 'breadcrumb' }
+                  %span.breadcrumbs__node
                     - if taxon.navigable.present?
                       - if @breadcrumbs.last == taxon
                         %span.breadcrumbs__text= taxon.name
