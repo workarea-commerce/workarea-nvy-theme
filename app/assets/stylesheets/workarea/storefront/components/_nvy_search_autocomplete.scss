@@ -1,0 +1,36 @@
+/*------------------------------------*\
+    #SEARCH AUTOCOMPLETE FOR NVY
+\*------------------------------------*/
+
+$search-autocomplete-product-name-font-size: $heading-6-font-size !default;
+$search-autocomplete-heading-font-face: $secondary-font-family !default;
+$search-autocomplete-heading-font-size: $heading-4-font-size !default;
+$search-autocomplete-heading-font-weight: bold !default;
+$search-autocomplete-popular-searches-font-size: $heading-5-font-size !default;
+
+/**
+ * 1. Reduce font size of product summaries in the autocomplete.
+ */
+.search-autocomplete {
+    .product-summary__name {
+        font-size: $search-autocomplete-product-name-font-size;
+    }
+}
+
+/**
+ * 2. Increase font size of autocomplete headings and ensure they use
+ *    a more appropriate font for the theme.
+ */
+
+.search-autocomplete__heading {
+    font-family: $search-autocomplete-heading-font-face;
+    font-size: $search-autocomplete-heading-font-size;
+    font-weight: $search-autocomplete-heading-font-weight;
+}
+
+/**
+ * 3. Increase visibility of search results on the left.
+ */
+.search-autocomplete__searches {
+    font-size: $search-autocomplete-popular-searches-font-size;
+}
