@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'workarea-gift_cards', '>= 4.0.0'
   s.add_dependency 'workarea-product_quickview', '>= 2.0.2'
   s.add_dependency 'workarea-reviews', '>= 3.1.0'
+  s.add_dependency 'workarea-search_autocomplete', '>= 1.0.0'
   s.add_dependency 'workarea-share', '>= 1.3.0'
   s.add_dependency 'workarea-swatches', '>= 1.0.5'
   s.add_dependency 'workarea-styled_selects', '>= 1.1.2'

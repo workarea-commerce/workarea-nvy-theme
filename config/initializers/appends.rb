@@ -19,7 +19,8 @@ module Workarea
     "workarea/storefront/components/overlay",
     "workarea/storefront/components/recommendations",
     "workarea/storefront/components/product_media",
-    "workarea/storefront/components/validation_icon"
+    "workarea/storefront/components/validation_icon",
+    "workarea/storefront/components/nvy_search_autocomplete"
   )
 
   Plugin.append_javascripts(
