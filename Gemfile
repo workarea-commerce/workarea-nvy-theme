@@ -14,4 +14,5 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
-gem 'workarea'
+gem 'workarea', github: 'workarea-commerce/workarea', branch: 'WORKAREA-285-fix-chromedriver-logger-not-logging-multiple-lines'
+gem 'workarea-a11y'
