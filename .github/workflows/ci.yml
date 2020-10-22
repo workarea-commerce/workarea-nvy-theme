@@ -58,3 +58,8 @@ jobs:
     - uses: workarea-commerce/ci/test@v1
       with:
         command: bin/rails app:workarea:test:plugins
+    - uses: actions/upload-artifact@v2
+      if: ${{ failure() }}
+      with:
+        name: screenshots
+        path: test/dummy/tmp/screenshots/

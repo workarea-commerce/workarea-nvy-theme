@@ -1,0 +1,74 @@
+module Workarea
+  module Storefront
+    if Plugin.installed? :product_bundles
+      decorate CategoriesWithPackagesSystemTest, with: :nvy do
+        def test_basic_category_setup
+          category = create_category
+          categorize_products(category)
+
+          visit storefront.category_path(category)
+
+          assert_text('Integration Product 1')
+          assert_text('Integration Product 2')
+          assert_text('Integration Package Product 1')
+          assert_text('$10.00')
+          assert_text('$5.00')
+          assert_text("Medium\n3")
+          assert_text("Small\n2")
+        end
+
+        def test_filtering_products
+          category = create_category
+          categorize_products(category)
+
+          visit storefront.category_path(category)
+
+          Capybara.match = :first
+          click_link '$10.00 - $19.99'
+
+          assert(page.has_content?('Integration Product 1'))
+          assert(page.has_no_content?('Integration Product 2'))
+          assert(page.has_content?('Integration Package Product 1'))
+
+          click_link '$10.00 - $19.99 (remove)'
+
+          assert(page.has_content?('Integration Product 1'))
+          assert(page.has_content?('Integration Product 2'))
+          assert(page.has_content?('Integration Package Product 1'))
+
+          click_link 'Extra Large'
+
+          assert(page.has_content?('Integration Package Product 1'))
+          assert(page.has_no_content?('Integration Product 1'))
+          assert(page.has_no_content?('Integration Product 2'))
+
+          click_link 'Extra Large (remove)'
+
+          assert(page.has_content?('Integration Product 1'))
+          assert(page.has_content?('Integration Product 2'))
+          assert(page.has_content?('Integration Package Product 1'))
+        end
+
+        def test_product_filtering_and_sorting
+          category = create_category
+          categorize_products(category)
+
+          visit storefront.category_path(category)
+
+          Capybara.match = :first
+          click_link '$10.00 - $19.99'
+
+          assert(page.has_content?('Integration Product 1'))
+          assert(page.has_no_content?('Integration Product 2'))
+          assert(page.has_content?('Integration Package Product 1'))
+
+          select('Price, Low to High', from: 'sort_top')
+
+          assert(page.has_content?('Integration Product 1'))
+          assert(page.has_no_content?('Integration Product 2'))
+          assert(page.has_content?('Integration Package Product 1'))
+        end
+      end
+    end
+  end
+end

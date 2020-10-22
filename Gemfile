@@ -15,3 +15,5 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 gem 'workarea'
+gem 'workarea-product_bundles',
+  github: 'workarea-commerce/workarea-product-bundles'
