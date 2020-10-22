@@ -1,3 +1,46 @@
+Workarea Nvy Theme 1.2.1 (2020-10-22)
+--------------------------------------------------------------------------------
+
+*   Add missing styles causing bundle templates to display oddly
+
+    NVY-6
+
+    Matt Duffy
+
+*   Fix System Tests for Product Bundles
+
+    When installing the NVY theme with the `workarea-product_bundles`
+    plugin, the system tests for bundles fail because the UI in NVY is
+    slightly different.
+
+    NVY-6
+
+    Tom Scott
+
+*   Add Search Autocomplete
+
+    Depend on the the search autocomplete plugin and ensure that the
+    autocomplete popup looks cohesive with the rest of the theme.
+
+    NVY-4
+
+    Tom Scott
+
+*   Upgrade theme to be compatible with Workarea v3.5.0 and friends
+
+    Workarea v3.5.0 just came out. Holla at ya boi.
+
+    NVY-3
+
+    Curt Howard
+
+*   Update README
+
+
+    Matt Duffy
+
+
+
 Workarea Nvy Theme 1.1.4 (2019-08-22)
 --------------------------------------------------------------------------------
 
