@@ -30,4 +30,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'workarea-styled_selects', '>= 1.1.2'
   s.add_dependency 'workarea-slick_slider', '>= 1.0.3'
   s.add_dependency 'workarea-wish_lists', '>= 3.1.0'
+s.required_ruby_version = ['>= 2.7', '< 3.5']
 end
